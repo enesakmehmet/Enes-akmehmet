@@ -20,7 +20,7 @@ export default function AnimatedBackground() {
             value: 60,
             density: {
               enable: true,
-              area: 800
+              value_area: 800 // area -> value_area
             }
           },
           color: {
@@ -28,7 +28,10 @@ export default function AnimatedBackground() {
           },
           opacity: {
             value: 0.4,
-            random: false
+            random: {
+              enable: false,
+              minimumValue: 0
+            }
           },
           size: {
             value: { min: 1, max: 3 }
