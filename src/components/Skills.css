@@ -7,9 +7,10 @@
 
 .skills-marquee {
   display: flex;
+  width: max-content;
   animation: marquee 40s linear infinite;
-  white-space: nowrap;
 }
+
 
 .skill-badge {
   display: inline-flex;
@@ -45,7 +46,7 @@
     transform: translateX(0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(-100%);
   }
 }
 

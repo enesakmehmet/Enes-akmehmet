@@ -7,9 +7,14 @@ export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
-    axios.get("https://portfolio-backendd-production.up.railway.app/projects")
-      .then(res => setProjects(res.data));
-  }, []);
+  axios.get('https://portfolio-backendd-production.up.railway.app/about')
+    .then(res => {
+      if (res.data && res.data.skills) {
+        setSkills(res.data.skills);
+      }
+    });
+}, []);
+
   
   return (
     <section id="projects" className="my-5 py-5 bg-light">
