@@ -7,7 +7,7 @@ export default function Projects() {
 
   useEffect(() => {
     axios
-      .get<Project[]>('https://portfolio-backendd-production.up.railway.app/projects')
+      .get('https://portfolio-backendd-production.up.railway.app/projects')
       .then(res => {
         setProjects(res.data);
       })
