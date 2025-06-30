@@ -18,18 +18,25 @@ export default function AnimatedBackground() {
           number: {
             value: 60,
             density: {
-              enable: true,
-              width: 800 // <-- area yerine width kullan
+              enable: true
+              // V3 API'de başka property YOK
             }
           },
           color: {
             value: '#ffffff'
           },
           opacity: {
-            value: 0.4, // random tamamen kaldır
+            value: {
+              min: 0.3,
+              max: 0.5
+            }
+            // random yok artık
           },
           size: {
-            value: { min: 1, max: 3 }
+            value: {
+              min: 1,
+              max: 3
+            }
           },
           links: {
             enable: true,
