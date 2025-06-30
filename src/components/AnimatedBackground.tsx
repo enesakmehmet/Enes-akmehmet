@@ -5,7 +5,6 @@ import { loadSlim } from '@tsparticles/slim';
 
 export default function AnimatedBackground() {
   const particlesInit = useCallback(async (engine: Engine) => {
-    // Loads the tsparticles package with all presets
     await loadSlim(engine);
   }, []);
 
@@ -20,18 +19,14 @@ export default function AnimatedBackground() {
             value: 60,
             density: {
               enable: true,
-              value_area: 800 // area -> value_area
+              width: 800 // <-- area yerine width kullan
             }
           },
           color: {
             value: '#ffffff'
           },
           opacity: {
-            value: 0.4,
-            random: {
-              enable: false,
-              minimumValue: 0
-            }
+            value: 0.4, // random tamamen kaldır
           },
           size: {
             value: { min: 1, max: 3 }
