@@ -7,10 +7,11 @@ export default function Projects() {
 
   useEffect(() => {
     axios
-      .get('https://portfolio-backendd-production.up.railway.app/projects')
+      .get<Project[]>('https://portfolio-backendd-production.up.railway.app/projects')
       .then(res => {
         setProjects(res.data);
-      });
+      })
+      .catch(err => console.error("Proje API hatası:", err));
   }, []);
 
   return (
