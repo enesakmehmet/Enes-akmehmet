@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import AnimatedBackground from './components/AnimatedBackground';
 import About from './components/About';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
+import './App.css';
 
 function App() {
   const [theme, setTheme] = useState<string>(localStorage.getItem('theme') || 'light');
@@ -32,6 +33,7 @@ function App() {
   }, []);
 
   const toggleTheme = () => setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+  
   return (
     <>
       <AnimatedBackground />
