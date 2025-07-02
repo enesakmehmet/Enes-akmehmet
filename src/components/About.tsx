@@ -14,6 +14,16 @@ const About = () => {
             Kariyerim boyunca çeşitli projelerde yer alarak hem ön yüz (front-end) hem de arka yüz (back-end) teknolojilerinde deneyim kazandım. Amacım, insanların hayatını kolaylaştıran ve onlara değer katan ürünler ortaya çıkarmak.
           </p>
         </div>
+        <div style={{ marginTop: 32 }}>
+          <a
+            href="/CV.pdf"
+            download
+            className="btn btn-primary btn-lg"
+            style={{ minWidth: 180 }}
+          >
+            CV İndir
+          </a>
+        </div>
       </div>
     </section>
   );
