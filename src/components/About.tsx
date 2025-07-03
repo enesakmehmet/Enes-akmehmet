@@ -15,7 +15,7 @@ const About = () => {
         </div>
         <div style={{ marginTop: 32 }}>
           <a
-            href="/public/CV.pdf"
+            href="/CV.pdf"
             download
             className="btn btn-primary btn-lg"
             style={{ minWidth: 180 }}
