@@ -5,6 +5,8 @@ import About from './components/About';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
+import ProjectDetail from './components/ProjectDetail';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
 function App() {
@@ -39,10 +41,17 @@ function App() {
       <AnimatedBackground />
       <Navbar onToggleTheme={toggleTheme} theme={theme} />
       <main className="container" style={{ paddingTop: '80px' }}>
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
+        <Routes>
+          <Route path="/" element={
+            <>
+              <About />
+              <Skills />
+              <Projects />
+              <Contact />
+            </>
+          } />
+          <Route path="/project/:id" element={<ProjectDetail />} />
+        </Routes>
       </main>
     </>
   );

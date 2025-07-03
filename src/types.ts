@@ -5,6 +5,7 @@ export interface AboutData {
 }
 
 export interface Project {
+  id: string;
   title: string;
   description: string;
   url: string;
