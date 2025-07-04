@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+
 import './Skills.css';
 import {
   FaReact,
@@ -10,7 +10,7 @@ import {
   FaGitAlt,
   FaDocker,
 } from 'react-icons/fa';
-import { SiTypescript, SiExpress, SiMongodb, SiPostgresql } from 'react-icons/si';
+import { SiTypescript, SiExpress, SiMongodb, SiPostgresql, SiPassport, SiPrisma, SiNestjs } from 'react-icons/si';
 
 // İkonlar
 const skillIcons: { [key: string]: React.ReactNode } = {
@@ -22,9 +22,12 @@ const skillIcons: { [key: string]: React.ReactNode } = {
   typescript: <SiTypescript />,
   git: <FaGitAlt />,
   docker: <FaDocker />,
-  express: <SiExpress />,
+  'express.js': <SiExpress />,
   mongodb: <SiMongodb />,
   postgresql: <SiPostgresql />,
+  'passport.js': <SiPassport />,
+  'prisma orm': <SiPrisma />,
+  nestjs: <SiNestjs />,
 };
 
 // İkon alma fonksiyonu
@@ -37,15 +40,39 @@ export default function Skills() {
   const [skills, setSkills] = useState<string[]>([]);
 
   useEffect(() => {
+    // GEÇİCİ: Beceriler, arka uç güncellenene kadar hemen görüntülenmeleri için kod içinde sabit olarak ayarlanmıştır.
+    // Normalde bu listenin backend'den gelmesi gerekir.
+    const allSkills = [
+      'React',
+      'Node.js',
+      'HTML',
+      'CSS',
+      'JavaScript',
+      'TypeScript',
+      'Git',
+      'Docker',
+      'MongoDB',
+      'Express.js',
+      'Passport.js',
+      'PostgreSQL',
+      'Prisma ORM',
+      'NestJS'
+    ];
+    const uniqueSkills = [...new Set(allSkills)];
+    setSkills(uniqueSkills);
+
+    /* // Orijinal backend çağırma kodu
     axios
       .get('https://portfolio-backendd-production.up.railway.app/about')
       .then(res => {
         console.log('API response:', res.data);
         if (res.data && res.data.skills) {
-          setSkills(res.data.skills);
+          const uniqueSkills = [...new Set(res.data.skills)];
+          setSkills(uniqueSkills);
         }
       })
       .catch(err => console.error('API error:', err));
+    */
   }, []);
 
   return (
