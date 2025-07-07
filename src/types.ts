@@ -11,4 +11,5 @@ export interface Project {
   url: string;
   imageUrl: string;
   tags: string[];
+  technologies?: string[]; // Kullanılan teknolojiler (opsiyonel)
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import type { Project } from '../types';
 import { Link } from 'react-router-dom';
+import './Projects.css'; // Stil dosyasını import ediyoruz
 
 export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -15,42 +16,47 @@ export default function Projects() {
       .catch(err => console.error("Proje API hatası:", err));
   }, []);
 
+  // Örnek projeleri de state'e ekleyebilir veya ayrı bir listede tutabiliriz.
+  const exampleProjects = [
+    {
+      id: 'new1',
+      title: 'Yeni Proje 1',
+      description: 'Proje açıklaması buraya gelecek.',
+      imageUrl: 'https://via.placeholder.com/400x300',
+      technologies: ['React', 'Node.js']
+    },
+    {
+      id: 'new2',
+      title: 'Yeni Proje 2',
+      description: 'Proje açıklaması buraya gelecek.',
+      imageUrl: 'https://via.placeholder.com/400x300',
+      technologies: ['Vue', 'Firebase']
+    }
+  ];
+
+  const allProjects = [...projects, ...exampleProjects];
+
   return (
-    <section className="my-5">
-      <h2 className="mb-4">Projelerim</h2>
-      <div className="row g-4">
-        {projects.map((project, i) => (
-          <div key={i} className="col-md-4">
-            <div className="card h-100 shadow-sm">
-              <img src={project.imageUrl} className="card-img-top" alt={project.title} />
-              <div className="card-body">
-                <h5 className="card-title">{project.title}</h5>
-                <p className="card-text">{project.description}</p>
-                <Link to={`/project/${project.id}`} className="btn btn-primary">Projeyi Görüntüle</Link>
+    <section id="projects" className="py-5">
+      <div className="container">
+        <h2 className="text-center mb-5">Projelerim</h2>
+        <div className="row g-4">
+          {allProjects.map((project) => (
+            <div key={project.id} className="col-lg-4 col-md-6">
+              <div className="project-card">
+                <img src={project.imageUrl} className="project-image" alt={project.title} />
+                <div className="project-overlay">
+                  <h5 className="project-title">{project.title}</h5>
+                  <p className="project-description">{project.description}</p>
+                  <div className="project-tech-list">
+                    {project.technologies?.map(tech => <span key={tech} className="tech-badge">{tech}</span>)}
+                  </div>
+                  <Link to={`/project/${project.id}`} className="btn btn-light mt-3">Detaylar</Link>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-        <div className="col-md-4">
-            <div className="card h-100 shadow-sm">
-              <img src="https://via.placeholder.com/300" className="card-img-top" alt="Yeni Proje 1" />
-              <div className="card-body">
-                <h5 className="card-title">Yeni Proje 1</h5>
-                <p className="card-text">Proje açıklaması buraya gelecek.</p>
-                <Link to={`/project/new1`} className="btn btn-primary">Projeyi Görüntüle</Link>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4">
-            <div className="card h-100 shadow-sm">
-              <img src="https://via.placeholder.com/300" className="card-img-top" alt="Yeni Proje 2" />
-              <div className="card-body">
-                <h5 className="card-title">Yeni Proje 2</h5>
-                <p className="card-text">Proje açıklaması buraya gelecek.</p>
-                <Link to={`/project/new2`} className="btn btn-primary">Projeyi Görüntüle</Link>
-              </div>
-            </div>
-          </div>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import axios from 'axios';
 import './Contact.css';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin } from 'react-icons/fa';
+
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
 
 interface FormData {
   name: string;
@@ -18,65 +25,52 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setStatus('Gönderiliyor...');
     try {
       const res = await axios.post('https://portfolio-backendd-production.up.railway.app/contact', form);
       if (res.data.success) {
-        setStatus('Mesajınız gönderildi!');
+        setStatus('Mesajınız başarıyla gönderildi!');
         setForm({ name: '', email: '', message: '' });
       } else {
-        setStatus('Gönderim hatası.');
+        setStatus('Bir hata oluştu, lütfen tekrar deneyin.');
       }
     } catch {
-      setStatus('Bağlantı hatası.');
+      setStatus('Sunucuya bağlanırken bir hata oluştu.');
     }
   };
 
   return (
-    <section id="contact" className="py-5 bg-light">
+    <section id="contact" className="contact-section">
       <div className="container">
-        <div className="row">
-          <div className="col-lg-8 mx-auto text-center">
-            <h2 className="mb-4">İletişim</h2>
+        <h2 className="section-title">İletişime Geçin</h2>
+        <div className="contact-wrapper">
+          <div className="contact-info">
+            <h3>Bilgilerim</h3>
+            <p>Sorularınız veya işbirliği teklifleriniz için bana aşağıdaki kanallardan ulaşabilirsiniz.</p>
+            <ul className="info-list">
+              <li><FaEnvelope className="icon" /> enes.akmehmet.58@gmail.com</li>
+              <li><FaPhone className="icon" /> +90 555 555 55 55</li>
+              <li><FaMapMarkerAlt className="icon" /> Sivas, Türkiye</li>
+            </ul>
+            <div className="social-links">
+              <a href="https://github.com/enesakmehmett" target="_blank" rel="noopener noreferrer"><FaGithub /></a>
+              <a href="https://www.linkedin.com/in/enes-akmehmet/" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
+            </div>
+          </div>
+          <div className="contact-form-wrapper">
             <form onSubmit={handleSubmit} className="contact-form">
-              <div className="row g-3">
-                <div className="col-md-6">
-                  <input
-                    name="name"
-                    value={form.name}
-                    onChange={handleChange}
-                    className="form-control form-control-lg"
-                    placeholder="Adınız"
-                    required
-                  />
-                </div>
-                <div className="col-md-6">
-                  <input
-                    name="email"
-                    type="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    className="form-control form-control-lg"
-                    placeholder="Email"
-                    required
-                  />
-                </div>
-                <div className="col-12">
-                  <textarea
-                    name="message"
-                    value={form.message}
-                    onChange={handleChange}
-                    className="form-control form-control-lg"
-                    placeholder="Mesajınız"
-                    rows={5}
-                    required
-                  ></textarea>
-                </div>
-                <div className="col-12">
-                  <button type="submit" className="btn btn-primary btn-lg">Gönder</button>
-                </div>
+              <div className="form-group">
+                <input type="text" name="name" value={form.name} onChange={handleChange} placeholder="Adınız" required />
               </div>
+              <div className="form-group">
+                <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="Email Adresiniz" required />
+              </div>
+              <div className="form-group">
+                <textarea name="message" value={form.message} onChange={handleChange} placeholder="Mesajınız" rows={6} required></textarea>
+              </div>
+              <button type="submit" className="btn-submit">Mesajı Gönder</button>
             </form>
-            {status && <div className="alert alert-info mt-4">{status}</div>}
+            {status && <p className="status-message">{status}</p>}
           </div>
         </div>
       </div>

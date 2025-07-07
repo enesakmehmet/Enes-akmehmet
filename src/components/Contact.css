@@ -1,9 +1,118 @@
-.contact-form .form-control-lg {
-  padding: 1rem 1.5rem;
-  font-size: 1.1rem;
+.contact-section {
+  padding: 80px 0;
+  background-color: var(--primary-light);
 }
 
-.contact-form .btn-lg {
-  padding: 0.75rem 2rem;
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  font-weight: 700;
+}
+
+.contact-wrapper {
+  display: flex;
+  background: var(--background-light);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.contact-info, .contact-form-wrapper {
+  padding: 40px;
+  flex: 1;
+}
+
+.contact-info {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+.contact-info h3 {
+  color: #fff;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.contact-info p {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.7;
+}
+
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 30px 0;
+}
+
+.info-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.info-list .icon {
+  font-size: 1.2rem;
+  margin-right: 15px;
+}
+
+.social-links {
+  margin-top: 30px;
+}
+
+.social-links a {
+  color: #fff;
+  font-size: 1.5rem;
+  margin-right: 20px;
+  transition: transform 0.3s ease;
+}
+
+.social-links a:hover {
+  transform: scale(1.2);
+}
+
+.contact-form .form-group {
+  margin-bottom: 20px;
+}
+
+.contact-form input, .contact-form textarea {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  background-color: var(--primary-light);
+  color: var(--text-primary);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 15px;
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
   font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-submit:hover {
+  background-color: #0056b3; /* Darker shade of accent */
+  transform: translateY(-2px);
+}
+
+.status-message {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: 500;
 }
