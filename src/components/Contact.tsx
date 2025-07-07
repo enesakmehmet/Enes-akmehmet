@@ -48,13 +48,13 @@ export default function Contact() {
             <h3>Bilgilerim</h3>
             <p>Sorularınız veya işbirliği teklifleriniz için bana aşağıdaki kanallardan ulaşabilirsiniz.</p>
             <ul className="info-list">
-              <li><FaEnvelope className="icon" /> enes.akmehmet.58@gmail.com</li>
-              <li><FaPhone className="icon" /> +90 555 555 55 55</li>
-              <li><FaMapMarkerAlt className="icon" /> Sivas, Türkiye</li>
+              <li><FaEnvelope className="icon" /> enesakmehmet7@gmail.com</li>
+              <li><FaPhone className="icon" /> +90 507 003 24 84</li>
+              <li><FaMapMarkerAlt className="icon" /> Rize, Türkiye</li>
             </ul>
             <div className="social-links">
-              <a href="https://github.com/enesakmehmett" target="_blank" rel="noopener noreferrer"><FaGithub /></a>
-              <a href="https://www.linkedin.com/in/enes-akmehmet/" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
+              <a href="https://github.com/enesakmehmet" target="_blank" rel="noopener noreferrer"><FaGithub /></a>
+              <a href="https://www.linkedin.com/in/enes-akmehmet-a061bb206/" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
             </div>
           </div>
           <div className="contact-form-wrapper">
