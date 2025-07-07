@@ -57,3 +57,19 @@
     font-weight: 700;
     color: var(--text-primary);
 }
+
+@media (max-width: 768px) {
+  .skill-badge {
+    padding: 8px 15px;
+    margin: 0 8px;
+    font-size: 0.9rem;
+  }
+
+  .skill-badge svg {
+    font-size: 1.2rem;
+  }
+
+  .skills-marquee {
+    animation-duration: 60s; /* Slow down animation on mobile */
+  }
+}

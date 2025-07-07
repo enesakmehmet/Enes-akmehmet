@@ -73,3 +73,22 @@
     margin-bottom: 5px;
     display: inline-block;
 }
+
+@media (max-width: 768px) {
+  .project-card {
+    height: 250px; /* Adjust height for smaller screens */
+    margin-bottom: 1.5rem;
+  }
+
+  .project-title {
+    font-size: 1.2rem;
+  }
+
+  .project-description {
+    font-size: 0.8rem;
+  }
+
+  .project-overlay {
+    padding: 15px;
+  }
+}
