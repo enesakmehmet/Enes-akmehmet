@@ -12,11 +12,18 @@ import './App.css';
 
 function App() {
   const [theme, setTheme] = useState<string>(localStorage.getItem('theme') || 'light');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     document.body.dataset.theme = theme;
     localStorage.setItem('theme', theme);
   }, [theme]);
+
+  useEffect(() => {
+    // Sayfa yüklendiğinde loader'ı kısa süreliğine göster
+    const timer = setTimeout(() => setLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Scroll reveal observer
   useEffect(() => {
@@ -37,6 +44,14 @@ function App() {
 
   const toggleTheme = () => setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
   
+  if (loading) {
+    return (
+      <div className="loader-overlay">
+        <div className="loader"></div>
+      </div>
+    );
+  }
+
   return (
     <>
       <AnimatedBackground />
