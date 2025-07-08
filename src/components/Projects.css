@@ -1,3 +1,25 @@
+#projects {
+  background: linear-gradient(120deg, #f3e8ff 0%, #e0f7fa 100%);
+  background-image: url('https://www.transparenttextures.com/patterns/diamond-upholstery.png');
+  background-attachment: fixed;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+
+#projects::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(243,232,255,0.85) 0%, rgba(224,247,250,0.85) 100%);
+  z-index: 0;
+}
+
+#projects .container, #projects h2, #projects .row {
+  position: relative;
+  z-index: 1;
+}
+
 .project-card {
   position: relative;
   border-radius: 15px;

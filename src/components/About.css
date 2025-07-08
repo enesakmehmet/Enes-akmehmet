@@ -5,6 +5,24 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="1.5" fill="%23999" fill-opacity="0.08"/></svg>');
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about-content, .about-text, .about-container h2 {
+  position: relative;
+  z-index: 1;
 }
 
 .about-container h2 {
@@ -47,6 +65,28 @@
 .rounded-circle {
   border: 5px solid #fff;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.about-container .btn-primary {
+  background: #fff;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  font-size: 1.15rem;
+  font-weight: 600;
+  padding: 0.85rem 2.2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.08);
+  letter-spacing: 0.5px;
+  transition: all 0.25s cubic-bezier(.4,2,.6,1);
+  outline: none;
+}
+
+.about-container .btn-primary:hover, .about-container .btn-primary:focus {
+  background: var(--primary-color);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.13);
+  border-color: var(--primary-color);
 }
 
 @media (max-width: 768px) {

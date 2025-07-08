@@ -6,6 +6,7 @@ import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Contact from './components/Contact';
 import ProjectDetail from './components/ProjectDetail';
+import Footer from './components/Footer';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
@@ -53,6 +54,7 @@ function App() {
           <Route path="/project/:id" element={<ProjectDetail />} />
         </Routes>
       </main>
+      <Footer />
     </>
   );
 }
