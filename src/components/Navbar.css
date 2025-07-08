@@ -131,7 +131,21 @@
   }
 
   .navbar-collapse .navbar-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
+    gap: 1.5rem;
+  }
+
+  .navbar-collapse .nav-item {
+    width: 100%;
+  }
+
+  .navbar-collapse .nav-link {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
   }
 
   .nav-link {
