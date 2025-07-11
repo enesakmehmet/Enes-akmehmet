@@ -5,6 +5,19 @@ const About = () => {
     <section id="about" className="about-container reveal">
       <h2>Hakkımda</h2>
       <div className="about-content">
+        <img
+          src="/profile.jpg"
+          alt="Profil"
+          className="profile-img rounded-circle"
+          width={180}
+          height={180}
+          style={{ objectFit: 'cover', margin: '0 auto 24px', display: 'block' }}
+          onError={e => {
+            if (!e.currentTarget.src.includes('placeholder-profile.png')) {
+              e.currentTarget.src = '/placeholder-profile.png';
+            }
+          }}
+        />
         <div className="about-text">
           <p>
             Merhaba! Ben Enes. Teknolojiye ve yeniliğe büyük bir tutkuyla bağlı bir yazılım geliştiricisiyim. Problem çözmeyi, yeni şeyler öğrenmeyi ve bildiklerimi paylaşmayı seviyorum. Modern ve kullanıcı dostu web uygulamaları geliştirmek en büyük ilgi alanım.

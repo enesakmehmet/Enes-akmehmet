@@ -1,5 +1,5 @@
 .about-container {
-  padding: 80px 20px;
+  padding: 80px 40px;
   text-align: center;
   min-height: 80vh;
   display: flex;
@@ -8,6 +8,8 @@
   background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%);
   position: relative;
   overflow: hidden;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .about-container::before {
@@ -87,6 +89,17 @@
   transform: translateY(-2px) scale(1.04);
   box-shadow: 0 8px 32px 0 rgba(0,0,0,0.13);
   border-color: var(--primary-color);
+}
+
+.profile-img {
+  border-radius: 50%;
+  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.10);
+  border: 5px solid #fff;
+  margin-bottom: 24px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background: #f3e8ff;
 }
 
 @media (max-width: 768px) {

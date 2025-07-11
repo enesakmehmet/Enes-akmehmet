@@ -34,7 +34,10 @@ export default function Projects() {
     }
   ];
 
-  const allProjects = [...projects, ...exampleProjects];
+  const allProjects = [...projects, ...exampleProjects].map(project => ({
+    ...project,
+    imageUrl: project.imageUrl || 'https://via.placeholder.com/400x300',
+  }));
 
   return (
     <section id="projects" className="py-5">
