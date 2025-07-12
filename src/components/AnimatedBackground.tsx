@@ -5,20 +5,16 @@ interface AnimatedBackgroundProps {
 }
 
 export default function AnimatedBackground({ theme }: AnimatedBackgroundProps) {
-  // Tema renklerine göre partikül ve efekt renkleri
-  let color = "#ffffff";
   let linkColor = "#ffffff";
   let gradientColors = ["#6c63ff", "#00adb5", "#ff6584", "#2563eb", "#a21caf"];
+
   if (theme === "dark") {
-    color = "#00adb5";
     linkColor = "#00adb5";
     gradientColors = ["#00adb5", "#393e46", "#6c63ff"];
   } else if (theme === "blue") {
-    color = "#2563eb";
     linkColor = "#2563eb";
     gradientColors = ["#2563eb", "#3b82f6", "#60a5fa"];
   } else if (theme === "purple") {
-    color = "#a21caf";
     linkColor = "#a21caf";
     gradientColors = ["#a21caf", "#c026d3", "#f3e8ff"];
   }
@@ -30,8 +26,8 @@ export default function AnimatedBackground({ theme }: AnimatedBackgroundProps) {
         fullScreen: { enable: true, zIndex: -1 },
         particles: {
           number: {
-            value: 80,
-            density: { enable: true, area: 800 }
+            value: 80
+            // ✅ density kaldırıldı
           },
           color: {
             value: gradientColors
@@ -46,11 +42,19 @@ export default function AnimatedBackground({ theme }: AnimatedBackgroundProps) {
           },
           opacity: {
             value: { min: 0.3, max: 0.8 },
-            animation: { enable: true, speed: 0.8, minimumValue: 0.3, sync: false }
+            animation: {
+              enable: true,
+              speed: 0.8,
+              sync: false
+            }
           },
           size: {
             value: { min: 2, max: 5 },
-            animation: { enable: true, speed: 2, minimumValue: 2, sync: false }
+            animation: {
+              enable: true,
+              speed: 2,
+              sync: false
+            }
           },
           links: {
             enable: true,
