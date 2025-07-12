@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
 :root {
+  /* Light Theme */
   --background-light: #ffffff;
   --primary-light: #f8f9fa;
   --secondary-light: #e9ecef;
@@ -11,6 +12,48 @@
   --font-family-sans-serif: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --navbar-bg-mobile: #222831f2;
 }
+
+body {
+  background-color: var(--background-light);
+  color: var(--text-secondary);
+}
+
+.theme-dark {
+  --background-light: #181824;
+  --primary-light: #393e46;
+  --secondary-light: #222831;
+  --accent-color: #00adb5;
+  --text-primary: #f8f9fa;
+  --text-secondary: #e9ecef;
+  --border-color: #393e46;
+  background-color: var(--background-light) !important;
+  color: var(--text-secondary) !important;
+}
+
+.theme-blue {
+  --background-light: #e6f0ff;
+  --primary-light: #2563eb;
+  --secondary-light: #3b82f6;
+  --accent-color: #2563eb;
+  --text-primary: #1e293b;
+  --text-secondary: #334155;
+  --border-color: #2563eb44;
+  background-color: var(--background-light) !important;
+  color: var(--text-secondary) !important;
+}
+
+.theme-purple {
+  --background-light: #f3e8ff;
+  --primary-light: #a21caf;
+  --secondary-light: #c026d3;
+  --accent-color: #a21caf;
+  --text-primary: #3b0764;
+  --text-secondary: #6d28d9;
+  --border-color: #a21caf44;
+  background-color: var(--background-light) !important;
+  color: var(--text-secondary) !important;
+}
+
 
 html {
   scroll-behavior: smooth;

@@ -15,7 +15,11 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    document.body.dataset.theme = theme;
+    document.body.setAttribute('data-theme', theme);
+    document.body.className = '';
+    if (theme === 'dark') document.body.classList.add('theme-dark');
+    else if (theme === 'blue') document.body.classList.add('theme-blue');
+    else if (theme === 'purple') document.body.classList.add('theme-purple');
     localStorage.setItem('theme', theme);
   }, [theme]);
 
@@ -42,8 +46,7 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
-  const toggleTheme = () => setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
-  
+
   if (loading) {
     return (
       <div className="loader-overlay">
@@ -54,8 +57,8 @@ function App() {
 
   return (
     <>
-      <AnimatedBackground />
-      <Navbar onToggleTheme={toggleTheme} theme={theme} />
+      <AnimatedBackground theme={theme} />
+      <Navbar theme={theme} onThemeChange={setTheme} />
       <main className="container" style={{ paddingTop: '80px' }}>
         <Routes>
           <Route path="/" element={

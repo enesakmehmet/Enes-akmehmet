@@ -24,11 +24,31 @@
 .footer-social a {
   color: #fff;
   transition: color 0.2s, transform 0.2s;
+  animation: float 2.5s ease-in-out infinite;
 }
 
 .footer-social a:hover {
   color: #00adb5;
-  transform: scale(1.15);
+  transform: scale(1.15) rotate(-8deg);
+  animation: wobble 0.5s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes wobble {
+  0% { transform: scale(1.15) rotate(-8deg); }
+  20% { transform: scale(1.2) rotate(8deg); }
+  40% { transform: scale(1.1) rotate(-6deg); }
+  60% { transform: scale(1.18) rotate(6deg); }
+  80% { transform: scale(1.13) rotate(-4deg); }
+  100% { transform: scale(1.15) rotate(0deg); }
 }
 
 @media (max-width: 600px) {
