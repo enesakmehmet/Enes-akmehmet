@@ -4,6 +4,7 @@ import AnimatedBackground from './components/AnimatedBackground';
 import About from './components/About';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
+import Timeline from './components/Timeline';
 import Contact from './components/Contact';
 import ProjectDetail from './components/ProjectDetail';
 import Footer from './components/Footer';
@@ -64,6 +65,7 @@ function App() {
           <Route path="/" element={
             <>
               <About />
+              <Timeline />
               <Skills />
               <Projects />
               <Contact />

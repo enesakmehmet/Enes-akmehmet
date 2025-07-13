@@ -117,6 +117,39 @@
   font-weight: 500;
 }
 
+.check-success-anim {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(.4,2,.6,1);
+  margin-top: 16px;
+  min-height: 64px;
+}
+.check-success-anim.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.check-success-anim svg {
+  margin-bottom: 8px;
+  animation: pop-check 0.6s cubic-bezier(.4,2,.6,1);
+}
+@keyframes pop-check {
+  0% { transform: scale(0.7) rotate(-20deg); opacity: 0; }
+  60% { transform: scale(1.15) rotate(8deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0); opacity: 1; }
+}
+.check-success-text {
+  color: #00b894;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  margin-top: 2px;
+}
+
+
 @media (max-width: 992px) {
   .contact-wrapper {
     flex-direction: column;

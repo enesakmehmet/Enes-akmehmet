@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import './Contact.css';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin } from 'react-icons/fa';
+import CheckSuccess from './CheckSuccess';
 
 interface FormData {
   name: string;
@@ -18,6 +19,7 @@ interface FormData {
 export default function Contact() {
   const [form, setForm] = useState<FormData>({ name: '', email: '', message: '' });
   const [status, setStatus] = useState<string>('');
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -29,8 +31,10 @@ export default function Contact() {
     try {
       const res = await axios.post('https://portfolio-backendd-production.up.railway.app/contact', form);
       if (res.data.success) {
-        setStatus('Mesajınız başarıyla gönderildi!');
+        setStatus('');
         setForm({ name: '', email: '', message: '' });
+        setShowSuccess(true);
+        setTimeout(() => setShowSuccess(false), 2200);
       } else {
         setStatus('Bir hata oluştu, lütfen tekrar deneyin.');
       }
@@ -70,6 +74,7 @@ export default function Contact() {
               </div>
               <button type="submit" className="btn-submit">Mesajı Gönder</button>
             </form>
+            <CheckSuccess show={showSuccess} />
             {status && <p className="status-message">{status}</p>}
           </div>
         </div>

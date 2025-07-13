@@ -20,17 +20,26 @@
 }
 
 .skills-container {
-  overflow: hidden;
-  position: relative;
   width: 100%;
   padding: 20px 0;
+  overflow: hidden;
+  position: relative;
+  background: none;
 }
+
 
 .skills-marquee {
   display: flex;
   width: max-content;
   animation: marquee 40s linear infinite;
+  gap: 20px;
+  align-items: center;
 }
+.skills-container:hover .skills-marquee,
+.skills-marquee:hover {
+  animation-duration: 90s !important; /* Fareyle gelince yavaşla */
+}
+
 
 
 .skill-badge {
@@ -46,7 +55,61 @@
   font-weight: 500;
   transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  position: relative;
 }
+
+/* Tooltip stil */
+.tooltip-container {
+  position: relative;
+}
+.tooltip-text {
+  visibility: hidden;
+  min-width: 180px;
+  max-width: 270px;
+  background-color: #393e46;
+  color: #fff;
+  text-align: center;
+  border-radius: 7px;
+  padding: 9px 12px;
+  position: fixed;
+  z-index: 9999;
+  bottom: auto;
+  left: 50%;
+  top: auto;
+  opacity: 0;
+  transition: opacity 0.25s;
+  font-size: 0.98rem;
+  pointer-events: none;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+  transform: translateX(-50%) translateY(-18px);
+  white-space: pre-line;
+  word-break: break-word;
+}
+@media (max-width: 600px) {
+  .tooltip-text {
+    max-width: 90vw;
+    font-size: 0.93rem;
+    padding: 7px 6px;
+  }
+}
+
+.tooltip-container:hover .tooltip-text,
+.tooltip-container:focus .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.tooltip-text::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 7px;
+  border-style: solid;
+  border-color: #393e46 transparent transparent transparent;
+}
+
 
 .skill-badge svg {
   margin-right: 10px;
@@ -73,6 +136,13 @@
     transform: translateX(-100%);
   }
 }
+
+@media (max-width: 768px) {
+  .skills-marquee {
+    animation-duration: 60s; /* Mobilde daha yavaş */
+  }
+}
+
 
 #skills h2 {
     font-weight: 700;
