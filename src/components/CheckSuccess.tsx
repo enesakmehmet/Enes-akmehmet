@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 export default function CheckSuccess({ show }: { show: boolean }) {
   return (
