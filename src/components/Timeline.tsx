@@ -27,7 +27,7 @@ const timelineData = [
     year: '2018',
     title: 'Üniversite Mezunu',
     subtitle: 'Eskişehir Anadolu Üniversitesi',
-    desc: 'İşletme Yönetimi (lisans).',
+    desc: 'İşletme Yönetimi (lisans)..',
     icon: '🏫',
   },
 ];
