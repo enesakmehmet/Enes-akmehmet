@@ -4,6 +4,7 @@ import TimelineItem from './TimelineItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLaptopCode, faClipboardList, faHeadset, faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 
+
 const timelineData = [
   {
     year: '2024-2025',

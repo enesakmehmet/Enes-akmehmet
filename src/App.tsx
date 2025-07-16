@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
+import { ToastProvider } from './components/Toast';
 import AnimatedBackground from './components/AnimatedBackground';
 import About from './components/About';
 import Projects from './components/Projects';
@@ -57,7 +58,7 @@ function App() {
   }
 
   return (
-    <>
+    <ToastProvider>
       <AnimatedBackground theme={theme} />
       <Navbar theme={theme} onThemeChange={setTheme} />
       <main className="container" style={{ paddingTop: '80px' }}>
@@ -75,7 +76,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
-    </>
+    </ToastProvider>
   );
 }
 

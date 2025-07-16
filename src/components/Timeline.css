@@ -58,6 +58,110 @@
   position: relative;
   z-index: 2;
 }
+
+/* Tooltip styles */
+.timeline-tooltip {
+  position: absolute;
+  top: -44px;
+  left: 60px;
+  background: #fff;
+  color: #a21caf;
+  padding: 8px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  font-size: 1rem;
+  white-space: pre-line;
+  pointer-events: none;
+  opacity: 0.95;
+  z-index: 10;
+  min-width: 180px;
+  max-width: 260px;
+  transition: opacity 0.2s;
+}
+
+/* Modal overlay styles */
+.timeline-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(60, 16, 83, 0.35);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.timeline-modal {
+  background: #fff;
+  border-radius: 18px;
+  padding: 32px 32px 24px 32px;
+  min-width: 320px;
+  max-width: 95vw;
+  box-shadow: 0 8px 40px rgba(162,28,175,0.18);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: popIn 0.25s;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.timeline-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #a21caf;
+  cursor: pointer;
+  z-index: 2;
+  transition: color 0.2s;
+}
+.timeline-modal-close:hover {
+  color: #ef4444;
+}
+
+.timeline-modal-icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  color: #a21caf;
+}
+.timeline-modal-content {
+  text-align: center;
+}
+.timeline-modal-year {
+  display: block;
+  font-weight: 600;
+  color: #2563eb;
+  margin-bottom: 8px;
+}
+.timeline-modal-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #a21caf;
+}
+.timeline-modal-subtitle {
+  display: block;
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+.timeline-modal-desc {
+  color: #444;
+  font-size: 1.05rem;
+  margin-bottom: 0;
+}
+
 .timeline-content {
   background: #fff;
   border-radius: 10px;
