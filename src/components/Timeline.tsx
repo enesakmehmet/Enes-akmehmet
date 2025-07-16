@@ -1,5 +1,8 @@
 
 import './Timeline.css';
+import TimelineItem from './TimelineItem';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLaptopCode, faClipboardList, faHeadset, faGraduationCap } from '@fortawesome/free-solid-svg-icons';
 
 const timelineData = [
   {
@@ -7,28 +10,28 @@ const timelineData = [
     title: 'Fullstack Developer',
     subtitle: 'Onlyjs Akedemi',
     desc: 'Modern web uygulamaları geliştirdim, React ve TypeScript ile projeler yönettim.',
-    icon: '💻',
+    icon: <FontAwesomeIcon icon={faLaptopCode} />,
   },
   {
     year: '2020-2024',
     title: 'Mhrs Randevu Sistemi',
     subtitle: 'Sağlık Bakanlığı',
     desc: '182 Sağlık Bakanlığı.',
-    icon: '📝',
+    icon: <FontAwesomeIcon icon={faClipboardList} />,
   },
   {
     year: '2019',
     title: 'Akbank Çağrı Merkezi',
     subtitle: 'Akbank',
     desc: 'Çağrı Merkezi .',
-    icon: '🎓',
+    icon: <FontAwesomeIcon icon={faHeadset} />,
   },
   {
     year: '2018',
     title: 'Üniversite Mezunu',
     subtitle: 'Eskişehir Anadolu Üniversitesi',
     desc: 'İşletme Yönetimi (lisans)..',
-    icon: '🏫',
+    icon: <FontAwesomeIcon icon={faGraduationCap} />,
   },
 ];
 
@@ -38,15 +41,14 @@ export default function Timeline() {
       <h2 className="timeline-title">Kariyer Zaman Tüneli</h2>
       <div className="timeline-container">
         {timelineData.map((item, idx) => (
-          <div className="timeline-item" key={idx}>
-            <div className="timeline-icon">{item.icon}</div>
-            <div className="timeline-content">
-              <span className="timeline-year">{item.year}</span>
-              <h3 className="timeline-item-title">{item.title}</h3>
-              <span className="timeline-subtitle">{item.subtitle}</span>
-              <p className="timeline-desc">{item.desc}</p>
-            </div>
-          </div>
+          <TimelineItem
+            key={idx}
+            icon={item.icon}
+            year={item.year}
+            title={item.title}
+            subtitle={item.subtitle}
+            desc={item.desc}
+          />
         ))}
       </div>
     </section>
