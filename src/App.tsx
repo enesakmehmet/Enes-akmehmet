@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
-import { ToastProvider } from './components/Toast';
 import AnimatedBackground from './components/AnimatedBackground';
 import About from './components/About';
 import Projects from './components/Projects';
