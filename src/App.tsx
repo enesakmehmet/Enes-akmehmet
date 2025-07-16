@@ -25,12 +25,10 @@ function App() {
   }, [theme]);
 
   useEffect(() => {
-    // Sayfa yüklendiğinde loader'ı kısa süreliğine göster
     const timer = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(timer);
   }, []);
 
-  // Scroll reveal observer
   useEffect(() => {
     const observer = new IntersectionObserver(
       entries => {
@@ -47,7 +45,6 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
-
   if (loading) {
     return (
       <div className="loader-overlay">
@@ -57,25 +54,28 @@ function App() {
   }
 
   return (
-    <ToastProvider>
+    <>
       <AnimatedBackground theme={theme} />
       <Navbar theme={theme} onThemeChange={setTheme} />
       <main className="container" style={{ paddingTop: '80px' }}>
         <Routes>
-          <Route path="/" element={
-            <>
-              <About />
-              <Timeline />
-              <Skills />
-              <Projects />
-              <Contact />
-            </>
-          } />
+          <Route
+            path="/"
+            element={
+              <>
+                <About />
+                <Timeline />
+                <Skills />
+                <Projects />
+                <Contact />
+              </>
+            }
+          />
           <Route path="/project/:id" element={<ProjectDetail />} />
         </Routes>
       </main>
       <Footer />
-    </ToastProvider>
+    </>
   );
 }
 
