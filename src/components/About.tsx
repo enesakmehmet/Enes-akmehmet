@@ -6,12 +6,12 @@ const About = () => {
       <h2>Hakkımda</h2>
       <div className="about-content">
         <img
-          src="/profile.jpg"
+          src="/public/profile.jpeg"
           alt="Profil"
           className="profile-img rounded-circle"
           width={180}
           height={180}
-          style={{ objectFit: 'cover', margin: '0 auto 24px', display: 'block' }}
+          style={{ objectFit: 'cover', margin: '64px auto 24px', display: 'block' }}
           onError={e => {
             if (!e.currentTarget.src.includes('placeholder-profile.png')) {
               e.currentTarget.src = '/placeholder-profile.png';
