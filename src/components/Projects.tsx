@@ -1,40 +1,6 @@
 import { Link } from 'react-router-dom';
+import { projects } from '../data/projects';
 import './Projects.css';
-
-// Proje tipini burada tanımlayabilirsin veya types dosyasından import edebilirsin
-type Project = {
-  id: string;
-  title: string;
-  description: string;
-  imageUrl: string;
-  technologies?: string[];
-};
-
-// Projeleri burada frontend'de sabit olarak tanımla
-const projects: Project[] = [
-  {
-    id: 'personal-website',
-    title: 'Personal Website',
-    description: 'A portfolio website built with React.',
-    imageUrl: '/public/images/1.proje detay resim/ana.png', // public/images klasörüne koyabilirsin
-    technologies: ['React', 'CSS', 'JavaScript']
-  },
-  {
-    id: 'ecommerce-app',
-    title: 'E-Commerce App',
-    description: 'Full-stack e-ticaret uygulaması.',
-    imageUrl: '/images/ecommerce-app.png',
-    technologies: ['React', 'Node.js', 'MongoDB']
-  },
-  {
-    id: 'blog-platform',
-    title: 'Blog Platform',
-    description: 'Kendi blog platformunuzu oluşturun.',
-    imageUrl: '/images/blog-platform.png',
-    technologies: ['Vue', 'Firebase']
-  }
-  // Yeni projeleri buraya ekleyebilirsin
-];
 
 export default function Projects() {
   return (
