@@ -6,7 +6,7 @@ const About = () => {
       <h2>Hakkımda</h2>
       <div className="about-content">
         <img
-          src="/public/profile.jpeg"
+          src="/profile.jpeg"
           alt="Profil"
           className="profile-img rounded-circle"
           width={180}
