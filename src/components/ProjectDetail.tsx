@@ -8,27 +8,28 @@ export default function ProjectDetail() {
   const project = projects.find(p => p.id === id);
 
   const [activeImg, setActiveImg] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   if (!project) {
     return (
-      <div className="project-modal-overlay" onClick={() => navigate(-1)}>
-        <div className="project-modal" onClick={e => e.stopPropagation()}>
-          <h2>Proje Bulunamadı</h2>
-          <button onClick={() => navigate(-1)}>Geri Dön</button>
-        </div>
+      <div>
+        <h2>Proje Bulunamadı</h2>
+        <button onClick={() => navigate(-1)}>Geri Dön</button>
       </div>
     );
   }
 
   const gallery = project.gallery || [project.imageUrl];
 
+  const openLightbox = () => setLightboxOpen(true);
+  const closeLightbox = () => setLightboxOpen(false);
+
   return (
-    <div className="project-modal-overlay" onClick={() => navigate(-1)}>
-      <div className="project-modal" onClick={e => e.stopPropagation()}>
-        <button className="close-btn" onClick={() => navigate(-1)}>&times;</button>
+    <>
+      <div className="project-detail-container container py-5">
         <h2>{project.title}</h2>
         <div className="gallery">
-          <img src={gallery[activeImg]} className="main-img" alt={project.title} />
+          <img src={gallery[activeImg]} className="main-img img-fluid mb-3" alt={project.title} onClick={openLightbox} style={{ cursor: 'pointer' }} />
           {gallery.length > 1 && (
             <div className="thumbs">
               {gallery.map((img, i) => (
@@ -46,7 +47,17 @@ export default function ProjectDetail() {
         <p style={{ marginTop: 16 }}>
           {project.detailedDescription || project.description}
         </p>
+        <button className="btn btn-secondary mt-4" onClick={() => navigate(-1)}>&larr; Geri</button>
       </div>
-    </div>
+
+      {lightboxOpen && (
+        <div className="lightbox-overlay" onClick={closeLightbox}>
+          <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+            <img src={gallery[activeImg]} className="lightbox-img" alt={project.title} />
+            <button className="close-btn" onClick={closeLightbox}>&times;</button>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
