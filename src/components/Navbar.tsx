@@ -81,6 +81,9 @@ export default function Navbar({ theme, onThemeChange }: NavbarProps) {
               <li className="nav-item">
                 <a className={`nav-link ${activeLink === 'contact' ? 'active' : ''}`} href="#contact" onClick={handleLinkClick}>İletişim</a>
               </li>
+              <li className="nav-item">
+                <a className="nav-link" href="https://github.com/EnesAkmehmet" target="_blank" rel="noopener noreferrer">GitHub</a>
+              </li>
             </ul>
             <div className="theme-palette ms-3" style={{ position: 'relative', display: 'inline-block' }}>
               <button
