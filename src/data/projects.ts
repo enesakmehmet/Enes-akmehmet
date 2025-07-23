@@ -6,6 +6,7 @@ export interface Project {
   technologies?: string[];
   detailedDescription?: string;
   gallery?: string[];
+  githubUrl?: string;
 }
 
 export const projects: Project[] = [
@@ -21,20 +22,23 @@ export const projects: Project[] = [
       '/images/1.proje detay resim/game.png',
       '/images/1.proje detay resim/game1.png',
       '/images/1.proje detay resim/game2.png'
-    ]
+    ],
+    githubUrl: 'https://github.com/EnesAkm/ecommerce-game-platform'
   },
   {
     id: 'ecommerce-app',
     title: 'E-Commerce App',
     description: 'Full-stack e-ticaret uygulaması.',
     imageUrl: '',
-    technologies: ['React', 'Node.js', 'MongoDB']
+    technologies: ['React', 'Node.js', 'MongoDB'],
+    githubUrl: 'https://github.com/EnesAkm/ecommerce-app'
   },
   {
     id: 'blog-platform',
     title: 'Blog Platform',
     description: 'Kendi blog platformunuzu oluşturun.',
     imageUrl: '',
-    technologies: ['Vue', 'Firebase']
+    technologies: ['Vue', 'Firebase'],
+    githubUrl: 'https://github.com/EnesAkm/blog-platform'
   }
 ];

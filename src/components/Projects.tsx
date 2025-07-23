@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { projects } from '../data/projects';
 import './Projects.css';
+import { FaGithub } from 'react-icons/fa';
 
 export default function Projects() {
   return (
@@ -18,6 +19,11 @@ export default function Projects() {
                   <div className="project-tech-list">
                     {project.technologies?.map(tech => <span key={tech} className="tech-badge">{tech}</span>)}
                   </div>
+                  {project.githubUrl && (
+                    <a href={project.githubUrl} className="btn btn-github mt-2" target="_blank" rel="noopener noreferrer" style={{display: 'inline-flex', alignItems: 'center', gap: 6, marginBottom: 8}}>
+                      <FaGithub style={{fontSize: '1.2rem'}} /> Kodu Görüntüle
+                    </a>
+                  )}
                   <Link to={`/project/${project.id}`} className="btn btn-light mt-3">Detaylar</Link>
                 </div>
               </div>
