@@ -26,13 +26,28 @@
 }
 
 .nav-link {
-  color: var(--text-secondary) !important;
+  color: #e0e0e0 !important;
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: color 0.3s, background 0.3s;
   padding: 0.5rem 1rem !important;
   margin: 0 0.5rem;
   position: relative;
   background-color: transparent !important;
+  opacity: 0.92;
+}
+
+.nav-link.active {
+  color: #00adb5 !important;
+  background: rgba(0,173,181,0.08);
+  border-radius: 8px;
+  font-weight: 700;
+  opacity: 1;
+}
+
+.nav-link:hover {
+  color: #00adb5 !important;
+  background: rgba(0,173,181,0.12) !important;
+  opacity: 1;
 }
 
 /* Underline effect */
@@ -64,17 +79,23 @@
 }
 
 .theme-toggle-btn {
-  background: transparent;
+  background: linear-gradient(120deg,#393e46 60%,#00adb5 100%);
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   border: none;
-  color: var(--text-secondary);
-  transition: all 0.3s ease;
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.10);
+  transition: all 0.3s;
+}
+.theme-toggle-btn:hover {
+  transform: scale(1.12) rotate(10deg);
+  background: linear-gradient(120deg,#00adb5 70%,#393e46 100%);
+  color: #fff;
 }
 
 .theme-toggle-btn:hover {
@@ -87,13 +108,14 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1031; /* Above navbar content, below menu */
+  width: 100vw;
+  height: 100vh;
+  background: rgba(20, 24, 31, 0.62);
+  backdrop-filter: var(--navbar-blur);
+  z-index: 1031;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.3s, visibility 0.3s;
 }
 
 .menu-open .overlay {
@@ -108,11 +130,11 @@
     position: fixed;
     top: 0;
     right: 0;
-    width: 280px; /* Adjust width as needed */
+    width: 70vw; /* Mobilde ekranın %70'i kadar genişlik */
     height: 100vh;
     padding: 2rem;
     margin-top: 0;
-    background-color: var(--navbar-bg-mobile);
+    background-color: rgba(34, 40, 49, 0.93); /* Daha yumuşak ve şeffaf koyu ton */
     border-radius: 0;
     box-shadow: -5px 0 15px rgba(0,0,0,0.1);
     
@@ -180,14 +202,14 @@
   .navbar-toggler span {
     display: block;
     position: absolute;
-    height: 3px;
+    height: 3.2px;
     width: 100%;
-    background: var(--text-primary);
+    background: linear-gradient(90deg,#00adb5 0%,#393e46 100%);
     border-radius: 3px;
     opacity: 1;
     left: 0;
     transform: rotate(0deg);
-    transition: .25s ease-in-out;
+    transition: .25s cubic-bezier(0.4,1,0.6,1);
   }
 
   .navbar-toggler span:nth-child(1) {
