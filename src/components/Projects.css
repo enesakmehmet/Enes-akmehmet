@@ -20,6 +20,58 @@
   z-index: 1;
 }
 
+.projects-scroll-container {
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #b39ddb #e0e0e0;
+}
+.projects-scroll-container:active {
+  cursor: grabbing;
+}
+.projects-scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+.projects-scroll-container::-webkit-scrollbar-thumb {
+  background: #b39ddb;
+  border-radius: 6px;
+}
+.projects-scroll-container::-webkit-scrollbar-track {
+  background: #e0e0e0;
+  border-radius: 6px;
+}
+
+.projects-row {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  /* Responsive padding */
+  padding: 2px 8px 8px 2px;
+}
+
+.project-card-horizontal {
+  min-width: 320px;
+  max-width: 360px;
+  flex: 0 0 auto;
+  margin-bottom: 8px;
+  /* Mobilde daha küçük, desktopta daha büyük olabilir */
+}
+
+@media (max-width: 600px) {
+  .project-card-horizontal {
+    min-width: 240px;
+    max-width: 90vw;
+  }
+  .projects-row {
+    gap: 12px;
+  }
+}
+
+
 .project-card {
   position: relative;
   border-radius: 15px;
