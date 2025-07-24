@@ -3,6 +3,48 @@
   padding: 70px 0 50px 0;
   text-align: center;
 }
+
+@media (max-width: 600px) {
+  .timeline-section {
+    padding: 32px 0 18px 0;
+  }
+  .timeline-title {
+    font-size: 1.2rem;
+    margin-bottom: 1.1rem;
+  }
+  .timeline-item {
+    gap: 12px;
+    font-size: 0.95rem;
+    padding: 10px 2px;
+  }
+  .timeline-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 1.1rem;
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .timeline-section {
+    padding: 12px 0 8px 0;
+  }
+  .timeline-title {
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+  .timeline-item {
+    gap: 6px;
+    font-size: 0.81rem;
+    padding: 4px 0;
+  }
+  .timeline-icon {
+    width: 24px;
+    height: 24px;
+    font-size: 0.8rem;
+    margin-right: 5px;
+  }
+}
 .timeline-title {
   font-size: 2.1rem;
   font-weight: 700;

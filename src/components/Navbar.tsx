@@ -58,14 +58,17 @@ export default function Navbar({ theme, onThemeChange }: NavbarProps) {
         <div className="container">
           <a className="navbar-brand fw-bold" href="#about" onClick={handleLinkClick}>Enes Akmehmet</a>
           <button
-            className={`navbar-toggler ${isMenuOpen ? 'open' : ''}`}
-            type="button"
-            aria-label="Toggle navigation"
+            className="navbar-toggler"
+            aria-label={isMenuOpen ? 'Menüyü Kapat' : 'Menüyü Aç'}
+            aria-expanded={isMenuOpen}
+            aria-controls="navbarNav"
             onClick={toggleMenu}
+            tabIndex={0}
+            type="button"
           >
-            <span></span>
-            <span></span>
-            <span></span>
+            <span style={{fontSize: '2rem', color: '#00adb5'}}>
+              {isMenuOpen ? '✖' : '☰'}
+            </span>
           </button>
           <div className={`navbar-collapse ${isMenuOpen ? 'show' : ''}`}>
             <ul className="navbar-nav ms-auto">

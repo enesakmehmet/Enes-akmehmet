@@ -4,6 +4,37 @@
   overflow: hidden;
 }
 
+@media (max-width: 600px) {
+  .skills-container {
+    padding: 10px 0;
+  }
+  .skills-marquee {
+    gap: 10px;
+  }
+  .skill-badge {
+    padding: 7px 12px;
+    font-size: 0.93rem;
+    margin: 0 4px;
+  }
+  #skills h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .skills-container {
+    padding: 4px 0;
+  }
+  .skill-badge {
+    padding: 5px 7px;
+    font-size: 0.81rem;
+  }
+  #skills h2 {
+    font-size: 1.05rem;
+  }
+}
+
 #skills::before {
   content: '';
   position: absolute;
