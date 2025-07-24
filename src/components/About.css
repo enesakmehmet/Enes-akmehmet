@@ -107,9 +107,11 @@
   transform-style: preserve-3d;
 }
 
-.profile-flip-card:hover .profile-flip-inner,
-.profile-flip-card:focus-within .profile-flip-inner {
-  transform: rotateY(180deg);
+@media (min-width: 992px) {
+  .profile-flip-card:hover .profile-flip-inner,
+  .profile-flip-card:focus-within .profile-flip-inner {
+    transform: rotateY(180deg);
+  }
 }
 
 .profile-flip-front, .profile-flip-back {

@@ -1,12 +1,33 @@
 import './About.css';
 
+import { useState } from 'react';
+import './About.css';
+
 const About = () => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  // Mobilde toggle, desktopta hover/focus ile flip
+  const handleFlip = () => {
+    // Ekran genişliği 991px'den küçükse (mobil/tablet)
+    if (window.innerWidth <= 991) {
+      setIsFlipped(f => !f);
+    }
+  };
+
   return (
     <section id="about" className="about-container reveal">
       <h2>Hakkımda</h2>
       <div className="about-content">
-        <div className="profile-flip-card">
-          <div className="profile-flip-inner">
+        <div
+          className="profile-flip-card"
+          onClick={handleFlip}
+          onTouchEnd={handleFlip}
+          tabIndex={0}
+        >
+          <div
+            className="profile-flip-inner"
+            style={isFlipped ? { transform: 'rotateY(180deg)' } : {}}
+          >
             <div className="profile-flip-front">
               <img
                 src="/profile.jpeg"
