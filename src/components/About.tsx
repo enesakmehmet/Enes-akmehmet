@@ -21,12 +21,10 @@ const About = () => {
         <div
           className="profile-flip-card"
           onClick={handleFlip}
-          onTouchEnd={handleFlip}
           tabIndex={0}
         >
           <div
-            className="profile-flip-inner"
-            style={isFlipped ? { transform: 'rotateY(180deg)' } : {}}
+            className={`profile-flip-inner${isFlipped ? ' flipped' : ''}`}
           >
             <div className="profile-flip-front">
               <img

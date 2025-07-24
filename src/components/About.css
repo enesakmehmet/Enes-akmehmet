@@ -114,6 +114,10 @@
   }
 }
 
+.profile-flip-inner.flipped {
+  transform: rotateY(180deg);
+}
+
 .profile-flip-front, .profile-flip-back {
   position: absolute;
   width: 100%;
