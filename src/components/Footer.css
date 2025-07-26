@@ -1,10 +1,14 @@
 .footer {
   width: 100%;
-  background: #222831;
-  color: #fff;
-  padding: 1.5rem 0 1rem 0;
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%);
+  background-size: 400% 400%;
+  animation: gradient-bg 40s ease infinite;
+  color: #1e293b;
+  padding: 2rem 0 1.5rem 0;
   text-align: center;
   margin-top: 2rem;
+  position: relative;
+  overflow: hidden;
 }
 
 .footer-content {
@@ -12,6 +16,9 @@
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .footer-social {
@@ -22,51 +29,86 @@
 }
 
 .footer-social a {
-  color: #fff;
-  transition: color 0.2s, transform 0.2s;
+  color: #1e293b;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   animation: float 2.5s ease-in-out infinite;
 }
 
 .footer-social a:hover {
-  color: #00adb5;
-  transform: scale(1.15) rotate(-8deg);
+  color: #1e293b;
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.15) rotate(-8deg) translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
   animation: wobble 0.5s;
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-6px);
   }
 }
 
 @keyframes wobble {
-  0% { transform: scale(1.15) rotate(-8deg); }
-  20% { transform: scale(1.2) rotate(8deg); }
-  40% { transform: scale(1.1) rotate(-6deg); }
-  60% { transform: scale(1.18) rotate(6deg); }
-  80% { transform: scale(1.13) rotate(-4deg); }
-  100% { transform: scale(1.15) rotate(0deg); }
+  0% {
+    transform: scale(1.15) rotate(-8deg);
+  }
+
+  20% {
+    transform: scale(1.2) rotate(8deg);
+  }
+
+  40% {
+    transform: scale(1.1) rotate(-6deg);
+  }
+
+  60% {
+    transform: scale(1.18) rotate(6deg);
+  }
+
+  80% {
+    transform: scale(1.13) rotate(-4deg);
+  }
+
+  100% {
+    transform: scale(1.15) rotate(0deg);
+  }
 }
 
 @media (max-width: 600px) {
   .footer {
     padding: 1rem 0 0.5rem 0;
   }
+
   .footer-content {
     font-size: 0.93rem;
     flex-direction: column;
     gap: 0.5rem;
     align-items: stretch;
   }
+
   .footer-social {
     gap: 1.6rem;
     margin-top: 0.8rem;
     flex-wrap: wrap;
     justify-content: center;
   }
+
   .footer-social a {
     padding: 0.3rem;
     border-radius: 50%;
@@ -77,14 +119,104 @@
     justify-content: center;
     font-size: 1.3rem;
   }
+
   .footer-social svg {
     width: 26px;
     height: 26px;
   }
-  .footer-content > div[style] {
+
+  .footer-content>div[style] {
     font-size: 0.88rem !important;
     flex-direction: column;
     gap: 0.3rem;
     margin-top: 0.6rem !important;
   }
+}
+
+@ keyframes gradient-bg {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Enhanced footer background */
+.footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 25% 75%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  animation: float-bg 45s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes float-bg {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-30px) rotate(180deg);
+  }
+}
+
+/* Enhanced visitor counter */
+.footer-content b {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px;
+  padding: 4px 12px;
+  font-weight: 600;
+  color: #1e293b;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+/* Snak
+e Game Easter Egg */
+.footer-content span[title] {
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.footer-content span[title]:hover {
+  opacity: 1 !important;
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+}
+
+/* Konami Code Hint Animation */
+@keyframes konamiHint {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.footer-content span[title]:hover::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: konamiHint 1s infinite;
+  pointer-events: none;
 }
