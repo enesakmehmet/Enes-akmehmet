@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 const KONAMI_CODE = [
   'ArrowUp',
-  'ArrowUp', 
+  'ArrowUp',
   'ArrowDown',
   'ArrowDown',
   'ArrowLeft',
@@ -14,29 +14,29 @@ const KONAMI_CODE = [
 ];
 
 export const useKonamiCode = () => {
-  const [sequence, setSequence] = useState<string[]>([]);
+  const [, setSequence] = useState<string[]>([]); // sequence okunmadığı için atlandı
   const [isActivated, setIsActivated] = useState(false);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       setSequence(prev => {
         const newSequence = [...prev, event.code];
-        
+
         // Sadece son 10 tuşu tut
         if (newSequence.length > KONAMI_CODE.length) {
           newSequence.shift();
         }
-        
+
         // Konami kodu kontrolü
-        if (newSequence.length === KONAMI_CODE.length) {
-          const isMatch = newSequence.every((key, index) => key === KONAMI_CODE[index]);
-          if (isMatch) {
-            setIsActivated(true);
-            // Sequence'i sıfırla
-            return [];
-          }
+        const isMatch =
+          newSequence.length === KONAMI_CODE.length &&
+          newSequence.every((key, index) => key === KONAMI_CODE[index]);
+
+        if (isMatch) {
+          setIsActivated(true);
+          return [];
         }
-        
+
         return newSequence;
       });
     };
