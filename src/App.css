@@ -4,21 +4,49 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(255,255,255,0.85);
+  background: linear-gradient(135deg, rgba(0,173,181,0.1) 0%, rgba(57,62,70,0.1) 100%);
+  backdrop-filter: blur(20px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  transition: opacity 0.3s;
+  transition: opacity 0.5s ease;
 }
 
 .loader {
-  border: 8px solid #f3f3f3;
-  border-top: 8px solid #3498db;
+  width: 80px;
+  height: 80px;
+  border: 4px solid transparent;
   border-radius: 50%;
-  width: 64px;
-  height: 64px;
-  animation: spin 1s linear infinite;
+  position: relative;
+  animation: spin 1.5s linear infinite;
+  background: linear-gradient(45deg, #00adb5, #393e46, #00adb5);
+  background-size: 400% 400%;
+  animation: spin 1.5s linear infinite, gradient-shift 3s ease-in-out infinite;
+}
+
+.loader::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  background: var(--bg-color, #fff);
+  border-radius: 50%;
+}
+
+.loader::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(45deg, #00adb5, #393e46);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
 }
 
 :root {
@@ -87,5 +115,35 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.7; }
+}
+
+/* Reveal Animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Glassmorphism utility class */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 

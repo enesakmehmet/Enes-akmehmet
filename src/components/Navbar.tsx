@@ -66,9 +66,11 @@ export default function Navbar({ theme, onThemeChange }: NavbarProps) {
             tabIndex={0}
             type="button"
           >
-            <span style={{fontSize: '2rem', color: '#00adb5'}}>
-              {isMenuOpen ? '✖' : '☰'}
-            </span>
+            <div className="hamburger-icon">
+              <span className={`hamburger-line ${isMenuOpen ? 'open' : ''}`}></span>
+              <span className={`hamburger-line ${isMenuOpen ? 'open' : ''}`}></span>
+              <span className={`hamburger-line ${isMenuOpen ? 'open' : ''}`}></span>
+            </div>
           </button>
           <div className={`navbar-collapse ${isMenuOpen ? 'show' : ''}`}>
             <ul className="navbar-nav ms-auto">
@@ -98,19 +100,19 @@ export default function Navbar({ theme, onThemeChange }: NavbarProps) {
                 🎨
               </button>
               {showPalette && (
-                <div className="theme-dropdown" style={{ position: 'absolute', right: 0, top: 44, background: '#fff', border: '1px solid #ccc', borderRadius: 8, boxShadow: '0 4px 16px rgba(0,0,0,0.07)', padding: 12, zIndex: 1000, minWidth: 160 }}>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                    <button className="theme-option" style={{ background: theme === 'light' ? '#e0e7ff' : '#fff', color: '#333', border: 'none', padding: 8, borderRadius: 6, display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer' }} onClick={() => handleThemeSelect('light')} aria-label="Açık Tema">
-                      <span style={{ background: '#fff', border: '1px solid #eee', width: 20, height: 20, borderRadius: '50%', display: 'inline-block' }}></span> Açık
+                <div className="theme-dropdown">
+                  <div className="theme-options">
+                    <button className={`theme-option ${theme === 'light' ? 'active' : ''}`} onClick={() => handleThemeSelect('light')} aria-label="Açık Tema">
+                      <span className="theme-color" style={{ background: 'linear-gradient(135deg, #fff 0%, #f8f9fa 100%)' }}></span> Açık
                     </button>
-                    <button className="theme-option" style={{ background: theme === 'dark' ? '#393e46' : '#222831', color: '#fff', border: 'none', padding: 8, borderRadius: 6, display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer' }} onClick={() => handleThemeSelect('dark')} aria-label="Koyu Tema">
-                      <span style={{ background: '#222831', width: 20, height: 20, borderRadius: '50%', display: 'inline-block' }}></span> Koyu
+                    <button className={`theme-option ${theme === 'dark' ? 'active' : ''}`} onClick={() => handleThemeSelect('dark')} aria-label="Koyu Tema">
+                      <span className="theme-color" style={{ background: 'linear-gradient(135deg, #222831 0%, #393e46 100%)' }}></span> Koyu
                     </button>
-                    <button className="theme-option" style={{ background: theme === 'blue' ? '#3b82f6' : '#2563eb', color: '#fff', border: 'none', padding: 8, borderRadius: 6, display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer' }} onClick={() => handleThemeSelect('blue')} aria-label="Mavi Tema">
-                      <span style={{ background: '#2563eb', width: 20, height: 20, borderRadius: '50%', display: 'inline-block' }}></span> Mavi
+                    <button className={`theme-option ${theme === 'blue' ? 'active' : ''}`} onClick={() => handleThemeSelect('blue')} aria-label="Mavi Tema">
+                      <span className="theme-color" style={{ background: 'linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)' }}></span> Mavi
                     </button>
-                    <button className="theme-option" style={{ background: theme === 'purple' ? '#c026d3' : '#a21caf', color: '#fff', border: 'none', padding: 8, borderRadius: 6, display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer' }} onClick={() => handleThemeSelect('purple')} aria-label="Mor Tema">
-                      <span style={{ background: '#a21caf', width: 20, height: 20, borderRadius: '50%', display: 'inline-block' }}></span> Mor
+                    <button className={`theme-option ${theme === 'purple' ? 'active' : ''}`} onClick={() => handleThemeSelect('purple')} aria-label="Mor Tema">
+                      <span className="theme-color" style={{ background: 'linear-gradient(135deg, #a21caf 0%, #c026d3 100%)' }}></span> Mor
                     </button>
                   </div>
                 </div>

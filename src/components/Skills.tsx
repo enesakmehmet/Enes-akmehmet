@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 
 import './Skills.css';
 import {
@@ -35,24 +35,41 @@ const getSkillIcon = (skill: string) => {
   return skillIcons[skill.toLowerCase()] || null;
 };
 
+// Skill kategorileri
+const skillCategories = {
+  'Tümü': [],
+  'Frontend': ['React', 'HTML', 'CSS', 'JavaScript', 'TypeScript'],
+  'Backend': ['Node.js', 'Express.js', 'NestJS', 'Passport.js'],
+  'Database': ['MongoDB', 'PostgreSQL', 'Prisma ORM'],
+  'Tools': ['Git', 'Docker']
+};
+
+// Kategori ikonları
+const categoryIcons: { [key: string]: string } = {
+  'Tümü': '🎯',
+  'Frontend': '🎨',
+  'Backend': '⚙️',
+  'Database': '🗄️',
+  'Tools': '🔧'
+};
+
 export default function Skills() {
-  const [skills] = useState<string[]>([
-    'React',
-    'Node.js',
-    'HTML',
-    'CSS',
-    'JavaScript',
-    'TypeScript',
-    'Git',
-    'Docker',
-    'Express.js',
-    'MongoDB',
-    'PostgreSQL',
-    'Passport.js',
-    'Prisma ORM',
-    'NestJS',
-  ]);
+  const [activeCategory, setActiveCategory] = useState<string>('Tümü');
   const [tooltip, setTooltip] = useState<{text: string, x: number, y: number, visible: boolean}>({text: '', x: 0, y: 0, visible: false});
+
+  const allSkills = [
+    'React', 'Node.js', 'HTML', 'CSS', 'JavaScript', 'TypeScript',
+    'Git', 'Docker', 'Express.js', 'MongoDB', 'PostgreSQL', 
+    'Passport.js', 'Prisma ORM', 'NestJS'
+  ];
+
+  // Aktif kategoriye göre skill'leri filtrele - memoized
+  const filteredSkills = useMemo(() => {
+    if (activeCategory === 'Tümü') {
+      return allSkills;
+    }
+    return skillCategories[activeCategory as keyof typeof skillCategories] || [];
+  }, [activeCategory]);
 
   const descs: { [key: string]: string } = {
     react: 'Modern web uygulamaları için popüler bir kütüphane.',
@@ -89,15 +106,38 @@ export default function Skills() {
     <section id="skills" className="py-5">
       <div className="container">
         <h2 className="text-center mb-5">Yeteneklerim</h2>
+        
+        {/* Kategori Filtreleri */}
+        <div className="category-filters">
+          {Object.keys(skillCategories).map((category) => (
+            <button
+              key={category}
+              className={`category-btn ${activeCategory === category ? 'active' : ''}`}
+              onClick={() => setActiveCategory(category)}
+            >
+              <span className="category-icon">{categoryIcons[category]}</span>
+              {category}
+              <span className="category-count">
+                {category === 'Tümü' ? allSkills.length : skillCategories[category as keyof typeof skillCategories].length}
+              </span>
+            </button>
+          ))}
+        </div>
+
         <div className="skills-container">
-          {skills.length > 0 ? (
-            <div className="skills-marquee">
-               {[...skills, ...skills, ...skills].map((skill, i) => (
+          {filteredSkills.length > 0 ? (
+            <div className="skills-grid">
+               {filteredSkills.map((skill, i) => (
                 <div
-                  key={i}
+                  key={`${activeCategory}-${skill}-${i}`}
                   className="skill-badge tooltip-container"
                   onMouseMove={e => handleMouseMove(e, skill)}
                   onMouseLeave={handleMouseLeave}
+                  style={{
+                    animationDelay: `${i * 0.1}s`,
+                    '--float-delay': `${i * 0.2}s`,
+                    '--float-duration': `${2.8 + (i % 3) * 0.4}s`
+                  } as React.CSSProperties & { '--float-delay': string; '--float-duration': string }}
                 >
                   {getSkillIcon(skill)}
                   <span className="skill-name">{skill}</span>
@@ -105,7 +145,7 @@ export default function Skills() {
               ))}
             </div>
           ) : (
-            <p className="text-center">Yükleniyor...</p>
+            <p className="text-center">Bu kategoride henüz skill yok.</p>
           )}
         </div>
       </div>

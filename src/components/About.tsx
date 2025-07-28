@@ -14,9 +14,9 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="about-container reveal">
-      <h2>Hakkımda</h2>
-      <div className="about-content">
+    <section id="about" className="about-container" style={{ opacity: 1, visibility: 'visible', zIndex: 1 }}>
+      <h2 style={{ color: '#1e293b', fontSize: '2.5rem', marginBottom: '30px' }}>Hakkımda</h2>
+      <div className="about-content" style={{ opacity: 1, visibility: 'visible', zIndex: 10 }}>
         <div
           className="profile-flip-card"
           onClick={handleFlip}
@@ -70,15 +70,22 @@ const About = () => {
         </div>
       </div>
       {/* GitHub Contributions Alanı */}
-      <div className="github-contributions-section" style={{ marginTop: 40, textAlign: 'center' }}>
-        <h3 style={{ marginBottom: 16 }}>GitHub Katkı Grafiğim</h3>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <GitHubCalendar
-  username="enesakmehmet"
-  blockSize={18}
-  blockMargin={6}
-  fontSize={16}
-/>
+      <div className="github-contributions-section">
+        <div className="github-card">
+          <h3 className="github-title">GitHub Katkı Grafiğim</h3>
+          <div className="github-calendar-wrapper">
+            <GitHubCalendar
+              username="enesakmehmet"
+              blockSize={12}
+              blockMargin={3}
+              fontSize={12}
+              colorScheme="light"
+              theme={{
+                light: ['#f0f9ff', '#bae6fd', '#7dd3fc', '#38bdf8', '#0ea5e9'],
+                dark: ['#f0f9ff', '#bae6fd', '#7dd3fc', '#38bdf8', '#0ea5e9']
+              }}
+            />
+          </div>
         </div>
       </div>
     </section>
