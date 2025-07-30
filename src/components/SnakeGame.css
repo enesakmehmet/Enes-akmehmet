@@ -30,6 +30,8 @@
   max-height: 90vh;
   outline: none;
   position: relative;
+  min-width: 300px;
+  box-sizing: border-box;
 }
 
 @keyframes slideIn {
@@ -47,11 +49,13 @@
   display: grid;
   grid-template-columns: 1fr auto auto;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
   margin-bottom: 20px;
   padding-bottom: 15px;
   border-bottom: 2px solid rgba(30, 41, 59, 0.1);
   min-height: 50px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .snake-game-header h3 {
@@ -63,6 +67,8 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  grid-column: 1;
+  justify-self: start;
 }
 
 /* Remove the controls wrapper, handle individually */
@@ -77,7 +83,8 @@
   box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
   white-space: nowrap;
   text-align: center;
-  justify-self: end;
+  grid-column: 2;
+  justify-self: center;
 }
 
 .close-btn {
@@ -94,6 +101,7 @@
   font-size: 1.2rem;
   font-weight: bold;
   transition: all 0.3s ease;
+  grid-column: 3;
   justify-self: end;
 }
 
@@ -225,6 +233,11 @@
     height: 320px;
   }
   
+  .snake-game-header {
+    grid-template-columns: 1fr auto auto;
+    gap: 8px;
+  }
+  
   .snake-game-header h3 {
     font-size: 1.3rem;
   }
@@ -247,10 +260,27 @@
     align-items: center;
     gap: 8px;
     min-height: 45px;
+    flex-wrap: nowrap;
   }
   
-  .snake-game-controls {
-    gap: 8px;
+  .snake-game-header h3 {
+    font-size: 1.2rem;
+    min-width: 80px;
+    max-width: 150px;
+  }
+  
+  .score {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    min-width: 70px;
+    margin: 0 5px;
+  }
+  
+  .close-btn {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    font-size: 1rem;
   }
 }.
 start-screen {
@@ -425,7 +455,7 @@ ile Controls */
   
   .snake-game-header {
     grid-template-columns: 1fr auto auto;
-    gap: 8px;
+    gap: 6px;
     margin-bottom: 15px;
     padding-bottom: 10px;
   }
@@ -529,7 +559,7 @@ xtra small screens */
 @media (max-width: 320px) {
   .snake-game-header {
     grid-template-columns: 1fr auto auto;
-    gap: 6px;
+    gap: 4px;
     padding-bottom: 8px;
     margin-bottom: 12px;
   }
@@ -547,5 +577,59 @@ xtra small screens */
     width: 24px;
     height: 24px;
     font-size: 0.8rem;
+  }
+}/*
+ Header için ek mobil düzenlemeler */
+@media (max-width: 350px) {
+  .snake-game-header {
+    gap: 4px;
+    min-height: 40px;
+  }
+  
+  .snake-game-header h3 {
+    font-size: 0.8rem;
+    min-width: 0;
+    flex: 1;
+  }
+  
+  .score {
+    font-size: 0.65rem;
+    padding: 2px 4px;
+    margin-right: 3px;
+    border-radius: 15px;
+  }
+  
+  .close-btn {
+    width: 22px;
+    height: 22px;
+    font-size: 0.7rem;
+  }
+}
+
+/* Çok dar ekranlar için başlık kısaltması */
+@media (max-width: 280px) {
+  .snake-game-header {
+    gap: 2px;
+    flex-wrap: nowrap;
+  }
+  
+  .snake-game-header h3 {
+    font-size: 0.7rem;
+    min-width: 40px;
+    max-width: 80px;
+  }
+  
+  .score {
+    font-size: 0.6rem;
+    padding: 2px 3px;
+    min-width: 40px;
+    margin: 0 1px;
+  }
+  
+  .close-btn {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    font-size: 0.6rem;
   }
 }

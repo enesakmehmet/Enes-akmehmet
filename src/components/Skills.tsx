@@ -14,20 +14,20 @@ import { SiTypescript, SiExpress, SiMongodb, SiPostgresql, SiPassport, SiPrisma,
 
 // İkonlar
 const skillIcons: { [key: string]: React.ReactNode } = {
-  react: <FaReact />,
-  'node.js': <FaNodeJs />,
-  html: <FaHtml5 />,
-  css: <FaCss3Alt />,
-  javascript: <FaJsSquare />,
-  typescript: <SiTypescript />,
-  git: <FaGitAlt />,
-  docker: <FaDocker />,
-  'express.js': <SiExpress />,
-  mongodb: <SiMongodb />,
-  postgresql: <SiPostgresql />,
-  'passport.js': <SiPassport />,
-  'prisma orm': <SiPrisma />,
-  nestjs: <SiNestjs />,
+  react: <FaReact style={{ color: '#61DAFB' }} />,
+  'node.js': <FaNodeJs style={{ color: '#339933' }} />,
+  html: <FaHtml5 style={{ color: '#E34F26' }} />,
+  css: <FaCss3Alt style={{ color: '#1572B6' }} />,
+  javascript: <FaJsSquare style={{ color: '#F7DF1E' }} />,
+  typescript: <SiTypescript style={{ color: '#3178C6' }} />,
+  git: <FaGitAlt style={{ color: '#F05032' }} />,
+  docker: <FaDocker style={{ color: '#2496ED' }} />,
+  'express.js': <SiExpress style={{ color: '#000000' }} />,
+  mongodb: <SiMongodb style={{ color: '#47A248' }} />,
+  postgresql: <SiPostgresql style={{ color: '#336791' }} />,
+  'passport.js': <SiPassport style={{ color: '#34E27A' }} />,
+  'prisma orm': <SiPrisma style={{ color: '#2D3748' }} />,
+  nestjs: <SiNestjs style={{ color: '#E0234E' }} />,
 };
 
 // İkon alma fonksiyonu
@@ -57,19 +57,20 @@ export default function Skills() {
   const [activeCategory, setActiveCategory] = useState<string>('Tümü');
   const [tooltip, setTooltip] = useState<{text: string, x: number, y: number, visible: boolean}>({text: '', x: 0, y: 0, visible: false});
 
-  const allSkills = [
+  // Skill listesini memoize et
+  const memoizedSkills = useMemo(() => [
     'React', 'Node.js', 'HTML', 'CSS', 'JavaScript', 'TypeScript',
     'Git', 'Docker', 'Express.js', 'MongoDB', 'PostgreSQL', 
     'Passport.js', 'Prisma ORM', 'NestJS'
-  ];
+  ], []);
 
   // Aktif kategoriye göre skill'leri filtrele - memoized
   const filteredSkills = useMemo(() => {
     if (activeCategory === 'Tümü') {
-      return allSkills;
+      return memoizedSkills;
     }
     return skillCategories[activeCategory as keyof typeof skillCategories] || [];
-  }, [activeCategory]);
+  }, [activeCategory, memoizedSkills]);
 
   const descs: { [key: string]: string } = {
     react: 'Modern web uygulamaları için popüler bir kütüphane.',
@@ -100,7 +101,48 @@ export default function Skills() {
     if (y < 60) y = 60;
     setTooltip({ text: descs[skill.toLowerCase()] || 'Yetenek açıklaması.', x, y, visible: true });
   };
+  
   const handleMouseLeave = () => setTooltip(t => ({ ...t, visible: false }));
+  
+  const handleTouch = (e: React.TouchEvent, skill: string) => {
+    const touch = e.touches[0];
+    const padding = 18;
+    let x = touch.clientX;
+    let y = touch.clientY;
+    
+    // Ekran boyutlarına göre tooltip pozisyonunu ayarla
+    const tooltipWidth = 270;
+    const tooltipHeight = 60;
+    
+    // Sağdan taşmayı engelle
+    if (window.innerWidth - x < tooltipWidth) {
+      x = window.innerWidth - tooltipWidth - padding;
+    }
+    // Soldan taşmayı engelle
+    if (x < padding) {
+      x = padding;
+    }
+    // Yukarıdan taşmayı engelle
+    if (y < tooltipHeight) {
+      y = tooltipHeight;
+    }
+    // Aşağıdan taşmayı engelle
+    if (window.innerHeight - y < tooltipHeight) {
+      y = window.innerHeight - tooltipHeight - padding;
+    }
+    
+    setTooltip({ 
+      text: descs[skill.toLowerCase()] || 'Yetenek açıklaması.', 
+      x, 
+      y, 
+      visible: true 
+    });
+    
+    // 2.5 saniye sonra tooltip'i gizle
+    setTimeout(() => {
+      setTooltip(t => ({ ...t, visible: false }));
+    }, 2500);
+  };
 
   return (
     <section id="skills" className="py-5">
@@ -118,7 +160,7 @@ export default function Skills() {
               <span className="category-icon">{categoryIcons[category]}</span>
               {category}
               <span className="category-count">
-                {category === 'Tümü' ? allSkills.length : skillCategories[category as keyof typeof skillCategories].length}
+                {category === 'Tümü' ? memoizedSkills.length : skillCategories[category as keyof typeof skillCategories].length}
               </span>
             </button>
           ))}
@@ -133,10 +175,22 @@ export default function Skills() {
                   className="skill-badge tooltip-container"
                   onMouseMove={e => handleMouseMove(e, skill)}
                   onMouseLeave={handleMouseLeave}
+                  onTouchStart={e => handleTouch(e, skill)}
+                  onTouchEnd={handleMouseLeave}
+                  onClick={e => {
+                    // Mobilde tıklama ile tooltip göster
+                    if (window.innerWidth <= 768) {
+                      handleTouch(e as React.TouchEvent, skill);
+                    }
+                  }}
                   style={{
                     animationDelay: `${i * 0.1}s`,
                     '--float-delay': `${i * 0.2}s`,
-                    '--float-duration': `${2.8 + (i % 3) * 0.4}s`
+                    '--float-duration': `${2.8 + (i % 3) * 0.4}s`,
+                    opacity: 1,
+                    visibility: 'visible',
+                    display: 'flex',
+                    cursor: 'pointer'
                   } as React.CSSProperties & { '--float-delay': string; '--float-duration': string }}
                 >
                   {getSkillIcon(skill)}

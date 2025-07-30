@@ -10,12 +10,7 @@ export default function Navbar({ theme, onThemeChange }: NavbarProps) {
   const [activeLink, setActiveLink] = useState('about');
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu
-  const [showPalette, setShowPalette] = useState(false);
 
-  const handleThemeSelect = (selectedTheme: string) => {
-    setShowPalette(false);
-    onThemeChange(selectedTheme);
-  }
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -90,34 +85,7 @@ export default function Navbar({ theme, onThemeChange }: NavbarProps) {
                 <a className="nav-link" href="https://github.com/EnesAkmehmet" target="_blank" rel="noopener noreferrer">GitHub</a>
               </li>
             </ul>
-            <div className="theme-palette ms-3" style={{ position: 'relative', display: 'inline-block' }}>
-              <button
-                className="btn btn-sm theme-toggle-btn"
-                aria-label="Tema Seçici"
-                onClick={() => setShowPalette((v) => !v)}
-                style={{ width: 38, height: 38, borderRadius: '50%', background: '#eee', border: '1px solid #ccc', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-              >
-                🎨
-              </button>
-              {showPalette && (
-                <div className="theme-dropdown">
-                  <div className="theme-options">
-                    <button className={`theme-option ${theme === 'light' ? 'active' : ''}`} onClick={() => handleThemeSelect('light')} aria-label="Açık Tema">
-                      <span className="theme-color" style={{ background: 'linear-gradient(135deg, #fff 0%, #f8f9fa 100%)' }}></span> Açık
-                    </button>
-                    <button className={`theme-option ${theme === 'dark' ? 'active' : ''}`} onClick={() => handleThemeSelect('dark')} aria-label="Koyu Tema">
-                      <span className="theme-color" style={{ background: 'linear-gradient(135deg, #222831 0%, #393e46 100%)' }}></span> Koyu
-                    </button>
-                    <button className={`theme-option ${theme === 'blue' ? 'active' : ''}`} onClick={() => handleThemeSelect('blue')} aria-label="Mavi Tema">
-                      <span className="theme-color" style={{ background: 'linear-gradient(135deg, #2563eb 0%, #3b82f6 100%)' }}></span> Mavi
-                    </button>
-                    <button className={`theme-option ${theme === 'purple' ? 'active' : ''}`} onClick={() => handleThemeSelect('purple')} aria-label="Mor Tema">
-                      <span className="theme-color" style={{ background: 'linear-gradient(135deg, #a21caf 0%, #c026d3 100%)' }}></span> Mor
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
+
           </div>
         </div>
       </nav>

@@ -39,13 +39,13 @@ export default function Footer() {
             <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.27c-.966 0-1.75-.79-1.75-1.76 0-.97.784-1.76 1.75-1.76s1.75.79 1.75 1.76c0 .97-.784 1.76-1.75 1.76zm13.5 11.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-10h2.89v1.36h.04c.4-.75 1.38-1.54 2.84-1.54 3.04 0 3.6 2 3.6 4.59v5.59z"/></svg>
           </a>
         </div>
-        <div style={{marginTop: 12, fontSize: '0.95rem', color: '#bbb'}}>
+        <div style={{marginTop: 12, fontSize: '0.95rem', color: '#334155', fontWeight: '500'}}>
           <span>En son güncelleme: {LAST_UPDATED}</span>
           <span style={{margin: '0 10px'}}>|</span>
           <span>Ziyaretçi: <VisitorCounter /></span>
           <span style={{margin: '0 10px'}}>|</span>
           <span 
-            style={{cursor: 'pointer', opacity: 0.7}} 
+            style={{cursor: 'pointer', opacity: 0.8}} 
             onClick={() => setShowSnake(true)}
             title="🎮 Gizli oyun için Konami kodunu dene: ↑↑↓↓←→←→BA"
           >

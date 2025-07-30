@@ -11,70 +11,84 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: 'personal-website',
-    title: 'E-commerce Game Platform',
-    description: 'Modern bir e-ticaret platformu. Kullanıcılar ürünleri görüntüleyebilir, sepete ekleyebilir ve satın alabilir. Admin paneli ile ürün yönetimi, sipariş takibi ve kullanıcı yönetimi yapılabilir..',
-    imageUrl: '/images/1.proje detay resim/ana.png',
-    technologies: ['React', 'CSS', 'JavaScript'],
-    detailedDescription: 'Modern bir e-ticaret platformu. Kullanıcılar ürünleri görüntüleyebilir, sepete ekleyebilir ve satın alabilir. Admin paneli ile ürün yönetimi, sipariş takibi ve kullanıcı yönetimi yapılabilir.',
+    id: "personal-website",
+    title: "E-commerce Game Platform",
+    description:
+      "Modern bir e-ticaret platformu. Kullanıcılar ürünleri görüntüleyebilir, sepete ekleyebilir ve satın alabilir. Admin paneli ile ürün yönetimi, sipariş takibi ve kullanıcı yönetimi yapılabilir..",
+    imageUrl: "/images/1.proje detay resim/ana.png",
+    technologies: ["React", "CSS", "JavaScript"],
+    detailedDescription:
+      "Modern bir e-ticaret platformu. Kullanıcılar ürünleri görüntüleyebilir, sepete ekleyebilir ve satın alabilir. Admin paneli ile ürün yönetimi, sipariş takibi ve kullanıcı yönetimi yapılabilir.",
     gallery: [
-      '/images/1.proje detay resim/ana.png',
-      '/images/1.proje detay resim/game.png',
-      '/images/1.proje detay resim/game1.png',
-      '/images/1.proje detay resim/game2.png'
+      "/images/1.proje detay resim/ana.png",
+      "/images/1.proje detay resim/game.png",
+      "/images/1.proje detay resim/game1.png",
+      "/images/1.proje detay resim/game2.png",
     ],
-    githubUrl: 'https://github.com/EnesAkm/ecommerce-game-platform'
+    githubUrl: "https://github.com/EnesAkm/ecommerce-game-platform",
   },
   {
-    id: 'weather-app-main',
-    title: 'Hava Durumu App',
-    description: 'Hava durumunu kontrol edilmesine sağlayan app.',
-    imageUrl: '/images/2.proje detay resim/anaopen.png',
-    technologies: ['React', 'TypeScript', 'CSS'],
-    detailedDescription: 'Modern ve kullanıcı dostu hava durumu uygulaması. Güncel hava durumu bilgileri, detaylı tahminler ve şık bir arayüz sunar. React ve TypeScript kullanılarak geliştirilmiş, responsive tasarımı ile tüm cihazlarda mükemmel çalışır.',
+    id: "weather-app-main",
+    title: "Hava Durumu App",
+    description: "Hava durumunu kontrol edilmesine sağlayan app.",
+    imageUrl: "/images/2.proje detay resim/anaopen.png",
+    technologies: ["React", "TypeScript", "CSS"],
+    detailedDescription:
+      "Modern ve kullanıcı dostu hava durumu uygulaması. Güncel hava durumu bilgileri, detaylı tahminler ve şık bir arayüz sunar. React ve TypeScript kullanılarak geliştirilmiş, responsive tasarımı ile tüm cihazlarda mükemmel çalışır.",
     gallery: [
-      '/images/2.proje detay resim/anaopen.png',
-      '/images/2.proje detay resim/open2.png',
-      '/images/2.proje detay resim/open3.png',
-      '/images/2.proje detay resim/open4.png'
+      "/images/2.proje detay resim/anaopen.png",
+      "/images/2.proje detay resim/open2.png",
+      "/images/2.proje detay resim/open3.png",
+      "/images/2.proje detay resim/open4.png",
     ],
-    githubUrl: 'https://github.com/EnesAkm/weather-app'
+    githubUrl: "https://github.com/EnesAkm/weather-app",
   },
   {
-    id: 'blog-platform',
-    title: 'Blog Platform',
-    description: 'Kendi blog platformunuzu oluşturun.',
-    imageUrl: '',
-    technologies: ['Vue', 'Firebase'],
-    githubUrl: 'https://github.com/EnesAkm/blog-platform'
+    id: "mood-tracker-app",
+    title: "Happy Mood Tracker",
+    description: "Günlük ruh halinizi takip edin ve mutluluğunuzu artırın.",
+    imageUrl: "/images/3.proje detay resim/happyana.png",
+    technologies: ["React", "TypeScript", "CSS"],
+    detailedDescription:
+      "Modern ve kullanıcı dostu ruh hali takip uygulaması. Günlük mood durumunuzu kaydedin, istatistiklerinizi görüntüleyin ve mutluluğunuzu artıracak öneriler alın. React ve TypeScript kullanılarak geliştirilmiş, responsive tasarımı ile tüm cihazlarda mükemmel çalışır.",
+    gallery: [
+      "/images/3.proje detay resim/happyana.png",
+      "/images/3.proje detay resim/happy1.png",
+      "/images/3.proje detay resim/happy2.png",
+      "/images/3.proje detay resim/happy3.png",
+    ],
+    githubUrl: "https://github.com/EnesAkm/mood-tracker-app",
   },
   {
-    id: 'task-management',
-    title: 'Task Management System',
-    description: 'Proje ve görev yönetimi için kapsamlı bir sistem. Takım çalışması, zaman takibi ve raporlama özellikleri.',
-    imageUrl: '/images/task-management.png',
-    technologies: ['React', 'TypeScript', 'Express', 'PostgreSQL'],
-    detailedDescription: 'Modern bir görev yönetim sistemi. Kullanıcılar projeler oluşturabilir, görevler atayabilir, ilerleme takibi yapabilir ve takım üyeleriyle işbirliği yapabilir. Kanban board, Gantt chart ve detaylı raporlama özellikleri içerir.',
+    id: "calculator-app",
+    title: "Smart Calculator",
+    description:
+      "Gelişmiş özelliklerle donatılmış modern hesap makinesi uygulaması.",
+    imageUrl: "/images/5.proje detay resim/Adsız.png",
+    technologies: ["React", "TypeScript", "CSS"],
+    detailedDescription:
+      "Modern ve kullanıcı dostu hesap makinesi uygulaması. Temel matematik işlemlerinden gelişmiş fonksiyonlara kadar geniş bir yelpazede hesaplama yapabilir. Geçmiş işlemleri kaydetme, bilimsel hesaplamalar ve şık arayüz özellikleri içerir. React ve TypeScript kullanılarak geliştirilmiş, responsive tasarımı ile tüm cihazlarda mükemmel çalışır.",
     gallery: [
-      '/images/task-management/dashboard.png',
-      '/images/task-management/kanban.png',
-      '/images/task-management/reports.png'
+      "/images/5.proje detay resim/Adsız.png",
+      "/images/5.proje detay resim/2.png",
+      "/images/5.proje detay resim/3.png",
+      "/images/5.proje detay resim/4.png",
     ],
-    githubUrl: 'https://github.com/EnesAkm/task-management-system'
+    githubUrl: "https://github.com/EnesAkm/smart-calculator-app",
   },
   {
-    id: 'weather-app',
-    title: 'Weather Forecast App',
-    description: 'Gerçek zamanlı hava durumu ve 7 günlük tahmin uygulaması. Konum bazlı hava durumu ve interaktif haritalar.',
-    imageUrl: '/images/weather-app.png',
-    technologies: ['React Native', 'Redux', 'OpenWeather API'],
-    detailedDescription: 'Kapsamlı hava durumu uygulaması. Mevcut konum ve arama yapılan şehirler için detaylı hava durumu bilgileri, saatlik ve günlük tahminler, hava durumu haritaları ve push bildirimleri içerir.',
+    id: "movie-app",
+    title: "Movie Discovery App",
+    description: "Film keşfetmek ve izlemek için modern sinema uygulaması.",
+    imageUrl: "/images/4.proje detay resim/movieana.png",
+    technologies: ["React", "TypeScript", "CSS"],
+    detailedDescription:
+      "Modern ve kullanıcı dostu film keşif uygulaması. Popüler filmleri keşfedin, detaylı bilgileri görüntüleyin, fragmanları izleyin ve kişisel izleme listenizi oluşturun. React ve TypeScript kullanılarak geliştirilmiş, responsive tasarımı ile tüm cihazlarda mükemmel çalışır.",
     gallery: [
-      '/images/weather-app/main.png',
-      '/images/weather-app/forecast.png',
-      '/images/weather-app/map.png',
-      '/images/weather-app/settings.png'
+      "/images/4.proje detay resim/movieana.png",
+      "/images/4.proje detay resim/movie1.png",
+      "/images/4.proje detay resim/movie2.png",
     ],
-    githubUrl: 'https://github.com/EnesAkm/weather-forecast-app'
-  }
+    githubUrl: "https://github.com/EnesAkm/movie-discovery-app",
+  },
 ];
