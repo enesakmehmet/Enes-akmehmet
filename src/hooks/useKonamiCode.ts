@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 const KONAMI_CODE = [
   'ArrowUp',
-  'ArrowUp', 
+  'ArrowUp',
   'ArrowDown',
   'ArrowDown',
   'ArrowLeft',
@@ -10,35 +10,27 @@ const KONAMI_CODE = [
   'ArrowLeft',
   'ArrowRight',
   'KeyB',
-  'KeyA'
+  'KeyA',
 ];
 
 export const useKonamiCode = () => {
-  const [sequence, setSequence] = useState<string[]>([]);
   const [isActivated, setIsActivated] = useState(false);
 
   useEffect(() => {
+    let inputSequence: string[] = [];
+
     const handleKeyDown = (event: KeyboardEvent) => {
-      setSequence(prev => {
-        const newSequence = [...prev, event.code];
-        
-        // Sadece son 10 tuşu tut
-        if (newSequence.length > KONAMI_CODE.length) {
-          newSequence.shift();
-        }
-        
-        // Konami kodu kontrolü
-        if (newSequence.length === KONAMI_CODE.length) {
-          const isMatch = newSequence.every((key, index) => key === KONAMI_CODE[index]);
-          if (isMatch) {
-            setIsActivated(true);
-            // Sequence'i sıfırla
-            return [];
-          }
-        }
-        
-        return newSequence;
-      });
+      inputSequence.push(event.code);
+
+      if (inputSequence.length > KONAMI_CODE.length) {
+        inputSequence.shift();
+      }
+
+      const isMatch = inputSequence.every((key, i) => key === KONAMI_CODE[i]);
+      if (isMatch) {
+        setIsActivated(true);
+        inputSequence = [];
+      }
     };
 
     window.addEventListener('keydown', handleKeyDown);
@@ -47,7 +39,6 @@ export const useKonamiCode = () => {
 
   const resetActivation = () => {
     setIsActivated(false);
-    setSequence([]);
   };
 
   return { isActivated, resetActivation };
