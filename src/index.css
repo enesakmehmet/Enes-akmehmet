@@ -16,11 +16,34 @@
 
 body {
   background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 50%, #93c5fd 100%);
-  background-size: 400% 400%;
-  animation: gradient-bg 60s ease infinite;
-  background-attachment: fixed;
   color: var(--text-secondary);
   min-height: 100vh;
+}
+
+/* Masaüstünde animasyonlu arkaplan */
+@media (min-width: 769px) {
+  body {
+    background-size: 400% 400%;
+    animation: gradient-bg 60s ease infinite;
+    background-attachment: fixed;
+  }
+}
+
+/* Mobilde sabit arkaplan */
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+    background-size: 100% 100%;
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 .theme-dark {
@@ -169,6 +192,50 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.75rem;
   }
 }
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.8rem;
+  }
+
+  section {
+    padding: 30px 0;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  body {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+
+  section {
+    padding: 25px 0;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  body {
+    font-size: 0.9rem;
+  }
+}
 @keyframes gradient-bg {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -205,4 +272,9 @@ h1, h2, h3, h4, h5, h6 {
 ::-moz-selection {
   background: rgba(255, 255, 255, 0.3);
   color: #fff;
+}
+
+
+body {
+  font-family: 'Poppins', sans-serif;
 }

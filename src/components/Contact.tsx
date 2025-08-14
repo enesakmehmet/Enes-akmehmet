@@ -1,14 +1,7 @@
 import { useState } from 'react';
-import axios from 'axios';
 import './Contact.css';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedin } from 'react-icons/fa';
 import CheckSuccess from './CheckSuccess';
-
-interface FormData {
-  name: string;
-  email: string;
-  message: string;
-}
 
 interface FormData {
   name: string;
@@ -21,6 +14,8 @@ export default function Contact() {
   const [status, setStatus] = useState<string>('');
   const [showSuccess, setShowSuccess] = useState(false);
 
+
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -28,18 +23,31 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('Gönderiliyor...');
+    
     try {
-      const res = await axios.post('https://portfolio-backendd-production.up.railway.app/contact', form);
-      if (res.data.success) {
+      const response = await fetch('https://formspree.io/f/xkgzvobd', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        }),
+      });
+
+      if (response.ok) {
         setStatus('');
         setForm({ name: '', email: '', message: '' });
         setShowSuccess(true);
         setTimeout(() => setShowSuccess(false), 2200);
       } else {
-        setStatus('Bir hata oluştu, lütfen tekrar deneyin.');
+        setStatus('Mail gönderilirken bir hata oluştu.');
       }
-    } catch {
-      setStatus('Sunucuya bağlanırken bir hata oluştu.');
+    } catch (error) {
+      console.error('Form Error:', error);
+      setStatus('Bağlantı hatası oluştu.');
     }
   };
 

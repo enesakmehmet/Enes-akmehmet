@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 
 import './Skills.css';
 import {
@@ -14,20 +14,20 @@ import { SiTypescript, SiExpress, SiMongodb, SiPostgresql, SiPassport, SiPrisma,
 
 // İkonlar
 const skillIcons: { [key: string]: React.ReactNode } = {
-  react: <FaReact />,
-  'node.js': <FaNodeJs />,
-  html: <FaHtml5 />,
-  css: <FaCss3Alt />,
-  javascript: <FaJsSquare />,
-  typescript: <SiTypescript />,
-  git: <FaGitAlt />,
-  docker: <FaDocker />,
-  'express.js': <SiExpress />,
-  mongodb: <SiMongodb />,
-  postgresql: <SiPostgresql />,
-  'passport.js': <SiPassport />,
-  'prisma orm': <SiPrisma />,
-  nestjs: <SiNestjs />,
+  react: <FaReact style={{ color: '#61DAFB' }} />,
+  'node.js': <FaNodeJs style={{ color: '#339933' }} />,
+  html: <FaHtml5 style={{ color: '#E34F26' }} />,
+  css: <FaCss3Alt style={{ color: '#1572B6' }} />,
+  javascript: <FaJsSquare style={{ color: '#F7DF1E' }} />,
+  typescript: <SiTypescript style={{ color: '#3178C6' }} />,
+  git: <FaGitAlt style={{ color: '#F05032' }} />,
+  docker: <FaDocker style={{ color: '#2496ED' }} />,
+  'express.js': <SiExpress style={{ color: '#000000' }} />,
+  mongodb: <SiMongodb style={{ color: '#47A248' }} />,
+  postgresql: <SiPostgresql style={{ color: '#336791' }} />,
+  'passport.js': <SiPassport style={{ color: '#34E27A' }} />,
+  'prisma orm': <SiPrisma style={{ color: '#2D3748' }} />,
+  nestjs: <SiNestjs style={{ color: '#E0234E' }} />,
 };
 
 // İkon alma fonksiyonu
@@ -55,21 +55,29 @@ const categoryIcons: { [key: string]: string } = {
 
 export default function Skills() {
   const [activeCategory, setActiveCategory] = useState<string>('Tümü');
-  const [tooltip, setTooltip] = useState<{text: string, x: number, y: number, visible: boolean}>({text: '', x: 0, y: 0, visible: false});
+  const [tooltip, setTooltip] = useState<{ text: string; x: number; y: number; visible: boolean }>({ text: '', x: 0, y: 0, visible: false });
+  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth <= 768);
 
-  const allSkills = [
+  // Mobil cihaz tespiti
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const memoizedSkills = useMemo(() => [
     'React', 'Node.js', 'HTML', 'CSS', 'JavaScript', 'TypeScript',
-    'Git', 'Docker', 'Express.js', 'MongoDB', 'PostgreSQL', 
+    'Git', 'Docker', 'Express.js', 'MongoDB', 'PostgreSQL',
     'Passport.js', 'Prisma ORM', 'NestJS'
-  ];
+  ], []);
 
-  // Aktif kategoriye göre skill'leri filtrele - memoized
   const filteredSkills = useMemo(() => {
-    if (activeCategory === 'Tümü') {
-      return allSkills;
-    }
+    if (activeCategory === 'Tümü') return memoizedSkills;
     return skillCategories[activeCategory as keyof typeof skillCategories] || [];
-  }, [activeCategory]);
+  }, [activeCategory, memoizedSkills]);
 
   const descs: { [key: string]: string } = {
     react: 'Modern web uygulamaları için popüler bir kütüphane.',
@@ -92,21 +100,58 @@ export default function Skills() {
     const padding = 18;
     let x = e.clientX;
     let y = e.clientY;
-    // Sağdan taşmayı engelle
     if (window.innerWidth - x < 270) x = window.innerWidth - 270 - padding;
-    // Soldan taşmayı engelle
     if (x < padding) x = padding;
-    // Yukarıdan taşmayı engelle
     if (y < 60) y = 60;
     setTooltip({ text: descs[skill.toLowerCase()] || 'Yetenek açıklaması.', x, y, visible: true });
   };
+
   const handleMouseLeave = () => setTooltip(t => ({ ...t, visible: false }));
+
+  // Mobil için optimize edilmiş tooltip gösterimi
+  const handleTouchOrClick = (
+    e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>,
+    skill: string
+  ) => {
+    e.preventDefault();
+    let x = 0;
+    let y = 0;
+    const padding = 10;
+    const tooltipWidth = Math.min(270, window.innerWidth - 40);
+    const tooltipHeight = 60;
+
+    if ('touches' in e) {
+      const touch = e.touches[0] || e.changedTouches[0];
+      x = touch.clientX;
+      y = touch.clientY;
+    } else {
+      x = e.clientX;
+      y = e.clientY;
+    }
+
+    // Mobil cihazlarda tooltip pozisyonunu optimize et
+    if (isMobile) {
+      x = Math.max(padding, Math.min(x, window.innerWidth - tooltipWidth - padding));
+      y = Math.max(tooltipHeight + padding, Math.min(y, window.innerHeight - tooltipHeight - padding));
+    } else {
+      if (window.innerWidth - x < tooltipWidth) x = window.innerWidth - tooltipWidth - padding;
+      if (x < padding) x = padding;
+      if (y < tooltipHeight) y = tooltipHeight;
+      if (window.innerHeight - y < tooltipHeight) y = window.innerHeight - tooltipHeight - padding;
+    }
+
+    setTooltip({ text: descs[skill.toLowerCase()] || 'Yetenek açıklaması.', x, y, visible: true });
+
+    // Mobilde daha kısa süre göster
+    const timeout = isMobile ? 1500 : 2500;
+    setTimeout(() => setTooltip(t => ({ ...t, visible: false })), timeout);
+  };
 
   return (
     <section id="skills" className="py-5">
       <div className="container">
         <h2 className="text-center mb-5">Yeteneklerim</h2>
-        
+
         {/* Kategori Filtreleri */}
         <div className="category-filters">
           {Object.keys(skillCategories).map((category) => (
@@ -118,7 +163,7 @@ export default function Skills() {
               <span className="category-icon">{categoryIcons[category]}</span>
               {category}
               <span className="category-count">
-                {category === 'Tümü' ? allSkills.length : skillCategories[category as keyof typeof skillCategories].length}
+                {category === 'Tümü' ? memoizedSkills.length : skillCategories[category as keyof typeof skillCategories].length}
               </span>
             </button>
           ))}
@@ -127,16 +172,23 @@ export default function Skills() {
         <div className="skills-container">
           {filteredSkills.length > 0 ? (
             <div className="skills-grid">
-               {filteredSkills.map((skill, i) => (
+              {filteredSkills.map((skill, i) => (
                 <div
                   key={`${activeCategory}-${skill}-${i}`}
                   className="skill-badge tooltip-container"
-                  onMouseMove={e => handleMouseMove(e, skill)}
-                  onMouseLeave={handleMouseLeave}
+                  onMouseMove={!isMobile ? e => handleMouseMove(e, skill) : undefined}
+                  onMouseLeave={!isMobile ? handleMouseLeave : undefined}
+                  onTouchStart={isMobile ? e => handleTouchOrClick(e, skill) : undefined}
+                  onTouchEnd={isMobile ? handleMouseLeave : undefined}
+                  onClick={e => handleTouchOrClick(e, skill)}
                   style={{
                     animationDelay: `${i * 0.1}s`,
                     '--float-delay': `${i * 0.2}s`,
-                    '--float-duration': `${2.8 + (i % 3) * 0.4}s`
+                    '--float-duration': `${2.8 + (i % 3) * 0.4}s`,
+                    opacity: 1,
+                    visibility: 'visible',
+                    display: 'flex',
+                    cursor: 'pointer'
                   } as React.CSSProperties & { '--float-delay': string; '--float-duration': string }}
                 >
                   {getSkillIcon(skill)}
@@ -154,22 +206,22 @@ export default function Skills() {
           className="tooltip-text"
           style={{
             position: 'fixed',
-            top: tooltip.y + 14,
+            top: tooltip.y + (isMobile ? 10 : 14),
             left: tooltip.x,
             zIndex: 9999,
             pointerEvents: 'none',
-            minWidth: 180,
-            maxWidth: 270,
+            minWidth: isMobile ? 120 : 180,
+            maxWidth: isMobile ? Math.min(270, window.innerWidth - 40) : 270,
             background: '#393e46',
             color: '#fff',
-            borderRadius: 7,
-            padding: '9px 12px',
-            fontSize: '0.98rem',
+            borderRadius: isMobile ? 5 : 7,
+            padding: isMobile ? '6px 8px' : '9px 12px',
+            fontSize: isMobile ? '0.8rem' : '0.98rem',
             boxShadow: '0 4px 18px rgba(0,0,0,0.10)',
             whiteSpace: 'pre-line',
             wordBreak: 'break-word',
             textAlign: 'center',
-            transition: 'opacity 0.25s',
+            transition: isMobile ? 'none' : 'opacity 0.25s',
             opacity: tooltip.visible ? 1 : 0,
           }}
         >

@@ -1,8 +1,10 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react-swc';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react-swc'
 
-export default defineConfig({
-  // Bu kısım kritik
-  base: './',
+export default defineConfig(({ command }) => ({
   plugins: [react()],
-});
+  base: command === 'build' ? './' : '/',
+  build: {
+    assetsDir: 'assets',
+  }
+}))

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { projects } from '../data/projects';
+import { getAssetPath } from '../utils/paths';
 import { FaGithub } from 'react-icons/fa';
 
 export default function ProjectDetail() {
@@ -35,16 +36,26 @@ export default function ProjectDetail() {
           </a>
         )}
         <div className="gallery">
-          <img src={gallery[activeImg]} className="main-img img-fluid mb-3" alt={project.title} onClick={openLightbox} style={{ cursor: 'pointer' }} />
+          <img
+            src={getAssetPath(gallery[activeImg])}
+            className="main-img img-fluid mb-3"
+            alt={project.title}
+            onClick={openLightbox}
+            style={{ cursor: 'pointer' }}
+            loading="lazy"
+            decoding="async"
+          />
           {gallery.length > 1 && (
             <div className="thumbs">
               {gallery.map((img, i) => (
                 <img
                   key={i}
-                  src={img}
+                  src={getAssetPath(img)}
                   className={`thumb ${i === activeImg ? 'active' : ''}`}
                   alt={`${project.title} ${i + 1}`}
                   onClick={() => setActiveImg(i)}
+                  loading="lazy"
+                  decoding="async"
                 />
               ))}
             </div>
@@ -59,7 +70,7 @@ export default function ProjectDetail() {
       {lightboxOpen && (
         <div className="lightbox-overlay" onClick={closeLightbox}>
           <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
-            <img src={gallery[activeImg]} className="lightbox-img" alt={project.title} />
+            <img src={getAssetPath(gallery[activeImg])} className="lightbox-img" alt={project.title} />
             <button className="close-btn" onClick={closeLightbox}>&times;</button>
           </div>
         </div>

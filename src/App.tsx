@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
-import AnimatedBackground from './components/AnimatedBackground';
+import { lazy, Suspense } from 'react';
+const AnimatedBackground = lazy(() => import('./components/AnimatedBackground'));
 import About from './components/About';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
 import Timeline from './components/Timeline';
 import Contact from './components/Contact';
-import ProjectDetail from './components/ProjectDetail';
+const ProjectDetail = lazy(() => import('./components/ProjectDetail'));
 import Footer from './components/Footer';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
@@ -55,7 +56,13 @@ function App() {
 
   return (
     <>
-      <AnimatedBackground theme={theme} />
+      <Suspense fallback={null}>
+        {/* Reduce motion or small screens: skip heavy animated bg */}
+        {!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) &&
+          window.innerWidth >= 992 && (
+            <AnimatedBackground theme={theme} />
+          )}
+      </Suspense>
       <Navbar theme={theme} onThemeChange={setTheme} />
       <main className="container" style={{ paddingTop: '80px' }}>
         <Routes>
@@ -71,7 +78,14 @@ function App() {
               </>
             }
           />
-          <Route path="/project/:id" element={<ProjectDetail />} />
+          <Route
+            path="/project/:id"
+            element={
+              <Suspense fallback={<div style={{padding:'60px 0', textAlign:'center'}}>Yükleniyor…</div>}> 
+                <ProjectDetail />
+              </Suspense>
+            }
+          />
         </Routes>
       </main>
       <Footer />

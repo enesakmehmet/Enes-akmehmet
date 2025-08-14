@@ -5,6 +5,12 @@ interface AnimatedBackgroundProps {
 }
 
 export default function AnimatedBackground({ theme }: AnimatedBackgroundProps) {
+  // Respect reduced motion and mobile devices to improve performance
+  const prefersReduced = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 992;
+  if (prefersReduced || isMobile) {
+    return null;
+  }
   let linkColor = "#ffffff";
   let gradientColors = ["#6c63ff", "#00adb5", "#ff6584", "#2563eb", "#a21caf"];
 
@@ -26,7 +32,7 @@ export default function AnimatedBackground({ theme }: AnimatedBackgroundProps) {
         fullScreen: { enable: true, zIndex: -1 },
         particles: {
           number: {
-            value: 80
+            value: 50
             // ✅ density kaldırıldı
           },
           color: {
@@ -65,7 +71,7 @@ export default function AnimatedBackground({ theme }: AnimatedBackgroundProps) {
           },
           move: {
             enable: true,
-            speed: 1.4,
+            speed: 0.9,
             direction: "none",
             outModes: { default: "out" },
             random: true,

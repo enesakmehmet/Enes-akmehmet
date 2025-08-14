@@ -85,6 +85,20 @@
   max-height: 90vh;
 }
 
+@media (max-width: 768px) {
+  .lightbox-content {
+    max-width: 95vw;
+    max-height: 85vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .lightbox-content {
+    max-width: 98vw;
+    max-height: 80vh;
+  }
+}
+
 .lightbox-img {
   width: 100%;
   height: auto;
@@ -110,6 +124,26 @@
   justify-content: center;
   align-items: center;
   text-shadow: 0 0 5px black;
+}
+
+@media (max-width: 768px) {
+  .lightbox-content .close-btn {
+    top: 10px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .lightbox-content .close-btn {
+    top: 8px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    font-size: 1.6rem;
+  }
 }
 
 @keyframes spin {
@@ -142,8 +176,24 @@
 /* Glassmorphism utility class */
 .glass-effect {
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
+/* Backdrop filter sadece masaüstünde */
+@media (min-width: 769px) {
+  .glass-effect {
+    backdrop-filter: blur(20px);
+  }
+}
+
+/* Mobilde backdrop-filter'ı devre dışı bırak */
+@media (max-width: 768px) {
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.95);
+  }
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
